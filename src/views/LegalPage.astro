@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InnerHero from '../components/InnerHero.astro';
+import { legal } from '../i18n/pages';
+import { ui } from '../i18n/ui';
+import { url, type Lang, type RouteKey } from '../i18n/routes';
+
+interface Props { lang: Lang; kind: 'terms' | 'privacy' }
+const { lang, kind } = Astro.props;
+const d = legal[kind][lang];
+const t = ui[lang].common;
+const crumbs = [{ name: t.breadcrumbHome, href: url('home', lang) }, { name: d.h1, href: url(kind as RouteKey, lang) }];
+---
+<Layout title={d.metaTitle} description={d.metaDesc} lang={lang} routeKey={kind as RouteKey} breadcrumbs={crumbs}>
+  <InnerHero title={d.h1} crumbs={crumbs} align="left" lead={`${t.updated}: ${d.updated}`} />
+  <section class="section !pt-4">
+    <div class="wrap max-w-[780px]">
+      <article class="prose-fb">
+        {d.sections.map(([h, ps]) => (<><h2>{h}</h2>{ps.map((p) => <p>{p}</p>)}</>))}
+      </article>
+    </div>
+  </section>
+</Layout>

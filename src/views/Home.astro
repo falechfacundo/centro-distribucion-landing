@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import Showcase from '../components/Showcase.astro';
+import Bento from '../components/Bento.astro';
+import Flow from '../components/Flow.astro';
+import Details from '../components/Details.astro';
+import CTA from '../components/CTA.astro';
+import type { Lang } from '../i18n/routes';
+import { APP_URL, SITE_NAME } from '../config';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const meta = {
+  es: {
+    title: 'FlowBoard — Gestión de proyectos con Kanban, sprints y OKRs',
+    description: 'Tableros Kanban, sprints, timeline, OKRs y time tracking en una sola herramienta. FlowBoard organiza proyectos, equipos y progreso sin fricción. Empezá gratis.',
+    desc: 'Software de gestión de proyectos con tableros Kanban, sprints, timeline, OKRs, time tracking e integración con Git.',
+  },
+  en: {
+    title: 'FlowBoard — Project management with Kanban, sprints and OKRs',
+    description: 'Kanban boards, sprints, timeline, OKRs and time tracking in one tool. FlowBoard organizes projects, teams and progress without friction. Start for free.',
+    desc: 'Project management software with Kanban boards, sprints, timeline, OKRs, time tracking and Git integration.',
+  },
+}[lang];
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: SITE_NAME, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: meta.desc, url: APP_URL, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE_NAME, url: new URL(lang === 'es' ? '/' : '/en/', Astro.site).href, inLanguage: lang },
+];
+---
+<Layout title={meta.title} description={meta.description} lang={lang} routeKey="home" jsonLd={ld}>
+  <Hero lang={lang} />
+  <Marquee lang={lang} />
+  <Showcase lang={lang} />
+  <Bento lang={lang} />
+  <Flow lang={lang} />
+  <Details lang={lang} />
+  <CTA lang={lang} />
+</Layout>

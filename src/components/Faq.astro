@@ -1,0 +1,32 @@
+---
+import JsonLd from './JsonLd.astro';
+interface Props { title: string; items: readonly (readonly [string, string])[] }
+const { title, items } = Astro.props;
+const ld = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
+---
+<section class="section !pt-0">
+  <div class="wrap max-w-[860px]">
+    <h2 class="h-section grad-text mb-10 text-center" style="font-size:clamp(1.8rem,3.6vw,2.8rem)" data-reveal>{title}</h2>
+    <div class="faq" data-reveal>
+      {items.map(([q, a]) => (
+        <details>
+          <summary>{q}<span class="faq-i" aria-hidden="true"></span></summary>
+          <p>{a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+  <JsonLd data={ld} />
+</section>
+<style is:global>
+  .faq { border-radius: 24px; background: rgba(255,255,255,.02); box-shadow: inset 0 0 0 1px var(--color-line); overflow: hidden; }
+  .faq details + details { border-top: 1px solid var(--color-line); }
+  .faq summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.3rem 1.6rem; cursor: pointer; list-style: none; font-size: 1.05rem; font-weight: 550; letter-spacing: -.015em; transition: background .25s; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary:hover { background: rgba(255,255,255,.03); }
+  .faq-i { position: relative; flex: none; width: 14px; height: 14px; }
+  .faq-i::before, .faq-i::after { content: ''; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; border-radius: 2px; background: var(--color-accent-2); transition: transform .35s var(--ease-soft); }
+  .faq-i::after { transform: rotate(90deg); }
+  .faq details[open] .faq-i::after { transform: rotate(0); }
+  .faq p { padding: 0 1.6rem 1.4rem; color: var(--color-fg-2); line-height: 1.7; max-width: 62ch; }
+</style>

@@ -1,0 +1,130 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { REGISTER_URL, LOGIN_URL } from '../config';
+import { url, featureKeys, compareKeys, type Lang } from '../i18n/routes';
+import { ui, featureNav, competitors } from '../i18n/ui';
+
+interface Props { lang: Lang; switchHref: string }
+const { lang, switchHref } = Astro.props;
+const t = ui[lang].nav;
+const homeHref = url('home', lang);
+---
+<div id="progress" class="fixed left-0 top-0 z-[60] h-[2px] w-full origin-left scale-x-0 bg-gradient-to-r from-accent via-accent-2 to-accent-3"></div>
+<header id="nav" class="fixed inset-x-0 top-0 z-50">
+  <div class="wrap-wide pt-4">
+    <nav id="nav-bar" class="mx-auto flex h-14 max-w-[1120px] items-center justify-between rounded-full border border-transparent pl-5 pr-2 transition-all duration-500" aria-label="Principal">
+      <a href={homeHref} aria-label={t.home} class="text-white"><Logo size={22} /></a>
+
+      <ul class="hidden items-center gap-0.5 lg:flex">
+        <li class="dd">
+          <button type="button" class="nl" aria-haspopup="true">{t.product}<Icon name="chevron-down" size={14} class="chev" /></button>
+          <div class="dd-panel dd-wide">
+            <ul class="grid grid-cols-2 gap-1">
+              {featureKeys.map((k) => (
+                <li>
+                  <a href={url(k, lang)} class="dd-item">
+                    <span class="dd-ic"><Icon name={featureNav[k].icon} size={17} /></span>
+                    <span><b>{featureNav[k][lang][0]}</b><small>{featureNav[k][lang][1]}</small></span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </li>
+        <li><a class="nl" href={url('pricing', lang)}>{t.pricing}</a></li>
+        <li class="dd">
+          <button type="button" class="nl" aria-haspopup="true">{t.compare}<Icon name="chevron-down" size={14} class="chev" /></button>
+          <div class="dd-panel">
+            <ul>
+              {compareKeys.map((k) => (
+                <li><a href={url(k, lang)} class="dd-item dd-simple"><span><b>FlowBoard vs {competitors[k.replace('cmp-', '') as keyof typeof competitors]}</b></span></a></li>
+              ))}
+            </ul>
+          </div>
+        </li>
+        <li><a class="nl" href={url('blog', lang)}>{t.blog}</a></li>
+        <li><a class="nl" href={url('changelog', lang)}>{t.changelog}</a></li>
+      </ul>
+
+      <div class="flex items-center gap-1">
+        <a href={switchHref} hreflang={lang === 'es' ? 'en' : 'es'} class="nl hidden sm:inline-flex !px-3 font-mono text-[0.72rem] uppercase tracking-wider" aria-label={ui[lang].footer.lang}>{lang === 'es' ? 'EN' : 'ES'}</a>
+        <a href={LOGIN_URL} class="nl hidden sm:inline-flex">{t.login}</a>
+        <a href={REGISTER_URL} class="btn btn-primary btn-sm">{t.cta}</a>
+        <button type="button" id="nav-toggle" class="ml-1 grid h-10 w-10 place-items-center rounded-full text-white lg:hidden" aria-label={t.menu} aria-expanded="false" aria-controls="mobile-menu">
+          <Icon name="menu" size={22} class="i-open" /><Icon name="x" size={22} class="i-close" />
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div id="mobile-menu" class="mm lg:hidden" hidden>
+    <div class="wrap pb-10 pt-24">
+      <p class="mm-h">{t.product}</p>
+      <ul class="mm-list">
+        {featureKeys.map((k) => (
+          <li><a href={url(k, lang)}><Icon name={featureNav[k].icon} size={18} />{featureNav[k][lang][0]}</a></li>
+        ))}
+      </ul>
+      <p class="mm-h">{t.compare}</p>
+      <ul class="mm-list">
+        {compareKeys.map((k) => (
+          <li><a href={url(k, lang)}><Icon name="arrow-right" size={16} />FlowBoard vs {competitors[k.replace('cmp-', '') as keyof typeof competitors]}</a></li>
+        ))}
+      </ul>
+      <ul class="mm-list mm-main">
+        <li><a href={url('pricing', lang)}>{t.pricing}</a></li>
+        <li><a href={url('blog', lang)}>{t.blog}</a></li>
+        <li><a href={url('changelog', lang)}>{t.changelog}</a></li>
+        <li><a href={switchHref} hreflang={lang === 'es' ? 'en' : 'es'}>{ui[lang].footer.lang}</a></li>
+        <li><a href={LOGIN_URL}>{t.login}</a></li>
+      </ul>
+    </div>
+</div>
+
+<style is:global>
+  #nav.is-stuck #nav-bar, #nav.menu-open #nav-bar {
+    background: rgba(14, 14, 18, 0.72);
+    border-color: var(--color-line);
+    backdrop-filter: blur(20px) saturate(1.4);
+    box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  @layer components { .nl { display: inline-flex; align-items: center; gap: 4px; padding: 0.5rem 0.9rem; border-radius: 999px; font-size: 0.9rem; color: var(--color-fg-2); transition: color .25s, background .25s; } }
+  .nl:hover, .dd:focus-within > .nl, .dd:hover > .nl { color: #fff; }
+  .chev { transition: transform .3s var(--ease-soft); } .dd:hover .chev, .dd:focus-within .chev { transform: rotate(180deg); }
+  .dd { position: relative; }
+  .dd-panel { position: absolute; left: 50%; top: 100%; z-index: 10; min-width: 240px; padding: 8px; margin-top: 10px; border-radius: 20px; background: rgba(17,17,21,.96); backdrop-filter: blur(24px); box-shadow: 0 30px 80px -20px rgba(0,0,0,.9), inset 0 0 0 1px var(--color-line-strong); opacity: 0; visibility: hidden; transform: translate(-50%, 8px); transition: opacity .25s, transform .35s var(--ease-soft), visibility .25s; }
+  .dd::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 12px; }
+  .dd:hover .dd-panel, .dd:focus-within .dd-panel { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+  .dd-wide { width: 560px; }
+  .dd-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 13px; transition: background .2s; }
+  .dd-item:hover { background: rgba(255,255,255,.06); }
+  .dd-item b { display: block; font-size: .9rem; font-weight: 550; color: var(--color-fg); letter-spacing: -.01em; } .dd-item small { display: block; margin-top: 2px; font-size: .78rem; color: var(--color-fg-3); }
+  .dd-simple { align-items: center; padding: 10px 14px; white-space: nowrap; }
+  .dd-ic { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: var(--color-accent-3); background: rgba(110,92,245,.14); box-shadow: inset 0 0 0 1px rgba(110,92,245,.28); }
+
+  #nav-toggle .i-close { display: none; } #nav.menu-open #nav-toggle .i-close { display: block; } #nav.menu-open #nav-toggle .i-open { display: none; }
+  .mm { position: fixed; inset: 0; z-index: 40; overflow-y: auto; background: rgba(9,9,12,.97); backdrop-filter: blur(20px); }
+  .mm[hidden] { display: none; }
+  .mm-h { margin: 1.4rem 0 .5rem; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--color-fg-3); }
+  .mm-list { list-style: none; margin: 0; padding: 0; display: grid; }
+  .mm-list a { display: flex; align-items: center; gap: 12px; padding: .8rem .2rem; font-size: 1.05rem; color: var(--color-fg); border-bottom: 1px solid var(--color-line); }
+  .mm-list svg { color: var(--color-accent-2); }
+  .mm-main { margin-top: 1.4rem; } .mm-main a { font-size: 1.25rem; font-weight: 550; letter-spacing: -.02em; }
+</style>
+<script>
+  const nav = document.getElementById('nav');
+  const btn = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const set = (open: boolean) => {
+    if (!nav || !btn || !menu) return;
+    nav.classList.toggle('menu-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    menu.hidden = !open;
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+  };
+  btn?.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => set(false)));
+  addEventListener('keydown', (e) => e.key === 'Escape' && set(false));
+</script>

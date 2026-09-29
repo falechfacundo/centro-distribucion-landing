@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+import { home } from '../i18n/home';
+import type { Lang } from '../i18n/routes';
+interface Props { lang?: Lang }
+const { lang = 'es' } = Astro.props;
+const c = home[lang].details;
+const items = c.items;
+---
+<section id="detalles" class="section">
+  <div class="wrap">
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:gap-20">
+      <div class="lg:sticky lg:top-32 lg:self-start">
+        <p class="eyebrow mb-6" data-reveal>{c.eyebrow}</p>
+        <h2 class="h-section grad-text" data-reveal>{c.h2}</h2>
+        <p class="lead mt-6" data-reveal>{c.lead}</p>
+      </div>
+      <ul class="det-grid" data-reveal>
+        {items.map(([ic, t, d]) => (
+          <li class="det spot">
+            <span class="det-ic"><Icon name={ic} size={19} /></span>
+            <h3>{t}</h3>
+            <p>{d}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+<style is:global>
+  .det-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; border-radius: 28px; overflow: hidden; background: var(--color-line); box-shadow: 0 0 0 1px var(--color-line); }
+  .det { padding: clamp(1.4rem, 2.6vw, 2.2rem); background: var(--color-base); transition: background .4s; }
+  .det:hover { background: #101015; }
+  .det-ic { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; margin-bottom: 1.6rem; color: var(--color-accent-3); background: rgba(110,92,245,.12); box-shadow: inset 0 0 0 1px rgba(110,92,245,.28); transition: transform .5s var(--ease-soft); }
+  .det:hover .det-ic { transform: translateY(-3px) rotate(-4deg); }
+  .det h3 { font-size: 1.15rem; font-weight: 600; letter-spacing: -.025em; }
+  .det p { margin-top: .5rem; font-size: .93rem; line-height: 1.6; color: var(--color-fg-2); }
+  @media (max-width: 560px) { .det-grid { grid-template-columns: 1fr; } }
+</style>

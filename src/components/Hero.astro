@@ -1,0 +1,51 @@
+---
+import HeroBoard from './HeroBoard.astro';
+import Icon from './Icon.astro';
+import { REGISTER_URL } from '../config';
+import { home } from '../i18n/home';
+import { url, type Lang } from '../i18n/routes';
+
+interface Props { lang?: Lang }
+const { lang = 'es' } = Astro.props;
+const c = home[lang].hero;
+const leaf = 'M240,185 V100 C240,42 290,0 350,0 H597 Q605,0 605,8 V105 C605,150 570,185 510,185 Z';
+---
+<section id="top" class="relative overflow-hidden pb-16 pt-[8.5rem] sm:pt-[10rem]">
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div class="hairline-grid absolute inset-0 opacity-70 [mask-image:radial-gradient(70%_60%_at_50%_0%,#000_20%,transparent_75%)]"></div>
+    <div class="absolute left-1/2 top-[-18%] h-[70vmin] w-[70vmin] -translate-x-1/2 rounded-full bg-accent/30 blur-[120px]" style="animation:drift 14s ease-in-out infinite"></div>
+    <div class="absolute right-[-10%] top-[8%] h-[40vmin] w-[40vmin] rounded-full bg-fuchsia-500/10 blur-[110px]" style="animation:drift 18s ease-in-out infinite reverse"></div>
+    <div class="absolute left-[-8%] top-[22%] h-[36vmin] w-[36vmin] rounded-full bg-sky-500/10 blur-[110px]" style="animation:drift 20s ease-in-out infinite"></div>
+    <div class="absolute left-[7%] top-[26%] hidden lg:block" data-parallax="-60"><svg class="w-16 text-white/[0.07]" style="--r:-12deg;animation:float-a 9s ease-in-out infinite" viewBox="0 0 605 185" fill="currentColor"><path d={leaf} /></svg></div>
+    <div class="absolute right-[8%] top-[34%] hidden lg:block" data-parallax="-110"><svg class="w-24 text-accent-2/15" style="--r:8deg;animation:float-a 11s ease-in-out infinite 1s" viewBox="0 0 605 185" fill="currentColor"><path d={leaf} /></svg></div>
+  </div>
+
+  <div class="wrap relative">
+    <div class="mx-auto flex max-w-[62rem] flex-col items-center text-center">
+      <a href={url('feat-ai', lang)} data-hero-in class="group mb-8 inline-flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-4 text-[0.82rem] text-fg-2 glass transition-colors hover:text-white">
+        <span class="rounded-full bg-accent px-2.5 py-0.5 text-[0.7rem] font-semibold uppercase tracking-wider text-white">{c.badge}</span>
+        {c.badgeText}
+        <Icon name="arrow-right" size={14} class="transition-transform group-hover:translate-x-0.5" />
+      </a>
+
+      <h1 class="h-display" aria-label={c.aria}>
+        <span class="split-line" aria-hidden="true"><span class="grad-text">{c.l1}</span></span>
+        <span class="split-line" aria-hidden="true"><span class="grad-text">{c.l2}</span></span>
+        <span class="split-line" aria-hidden="true"><span class="grad-accent" style="-webkit-text-fill-color:transparent">{c.l3}</span></span>
+      </h1>
+
+      <p data-hero-in class="lead mt-8 max-w-[38rem]">{c.lead}</p>
+
+      <div data-hero-in class="mt-10 flex flex-col items-center gap-3 sm:flex-row">
+        <a href={REGISTER_URL} data-magnetic class="btn btn-primary btn-lg">{c.cta1} <Icon name="arrow-right" class="arrow" /></a>
+        <a href="#producto" data-magnetic class="btn btn-ghost btn-lg"><Icon name="play" size={16} /> {c.cta2}</a>
+      </div>
+      <p data-hero-in class="mt-5 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-fg-3">{c.note}</p>
+    </div>
+
+    <div data-hero-in class="relative mx-auto mt-16 max-w-[1080px] sm:mt-20">
+      <HeroBoard lang={lang} />
+    </div>
+  </div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-base"></div>
+</section>

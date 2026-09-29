@@ -1,0 +1,31 @@
+---
+import Icon from './Icon.astro';
+interface Props { eyebrow?: string; title: string; lead?: string; crumbs?: { name: string; href: string }[]; align?: 'center' | 'left'; icon?: string }
+const { eyebrow, title, lead, crumbs = [], align = 'center', icon } = Astro.props;
+const center = align === 'center';
+---
+<section class="relative overflow-hidden pb-16 pt-[9rem] sm:pt-[10.5rem]">
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div class="hairline-grid absolute inset-0 opacity-60 [mask-image:radial-gradient(60%_70%_at_50%_0%,#000_10%,transparent_75%)]"></div>
+    <div class="absolute left-1/2 top-[-30%] h-[55vmin] w-[70vmin] -translate-x-1/2 rounded-full bg-accent/25 blur-[120px]"></div>
+  </div>
+  <div class:list={['wrap relative', center ? 'text-center' : '']}>
+    {crumbs.length > 0 && (
+      <nav aria-label="Breadcrumb" class:list={['mb-8 flex flex-wrap items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.12em] text-fg-3', center ? 'justify-center' : '']} data-hero-in>
+        {crumbs.map((c, i) => (
+          <>
+            {i > 0 && <span aria-hidden="true">/</span>}
+            {i < crumbs.length - 1 ? <a href={c.href} class="transition-colors hover:text-white">{c.name}</a> : <span class="text-fg-2" aria-current="page">{c.name}</span>}
+          </>
+        ))}
+      </nav>
+    )}
+    {icon && <span class:list={['mb-6 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-[#7c6bff] to-[#5b48e6] text-white shadow-[0_12px_34px_-8px_rgba(110,92,245,.9),inset_0_1px_0_rgba(255,255,255,.35)]', center ? 'mx-auto' : '']} data-hero-in><Icon name={icon} size={26} /></span>}
+    {eyebrow && <p class="eyebrow mb-6" data-hero-in>{eyebrow}</p>}
+    <h1 class:list={['h-display grad-text', center ? 'mx-auto max-w-[18ch]' : 'max-w-[20ch]']} style="font-size:clamp(2.4rem,6.2vw,5rem)" data-hero-in>{title}</h1>
+    {lead && <p class:list={['lead mt-7', center ? 'mx-auto max-w-[40rem]' : 'max-w-[40rem]']} data-hero-in>{lead}</p>}
+    <div class:list={['mt-10 flex flex-col gap-3 sm:flex-row', center ? 'items-center justify-center' : '']} data-hero-in>
+      <slot />
+    </div>
+  </div>
+</section>

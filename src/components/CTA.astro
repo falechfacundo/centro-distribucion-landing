@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+import { REGISTER_URL, LOGIN_URL } from '../config';
+import { home } from '../i18n/home';
+import type { Lang } from '../i18n/routes';
+interface Props { lang?: Lang }
+const { lang = 'es' } = Astro.props;
+const c = home[lang].cta;
+const T = 'M240,185 V100 C240,42 290,0 350,0 H597 Q605,0 605,8 V105 C605,150 570,185 510,185 Z';
+const M = 'M240,185 H140 C55,185 0,250 0,340 V364 Q0,372 8,372 H105 C190,372 240,300 240,185 Z';
+---
+<section id="empezar" class="section pb-32" data-cta>
+  <div class="wrap-wide">
+    <div class="cta noise relative overflow-hidden rounded-[2.2rem] px-6 py-24 text-center sm:px-12 md:py-32">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="hairline-grid absolute inset-0 [mask-image:radial-gradient(60%_70%_at_50%_100%,#000,transparent)]"></div>
+        <div class="absolute left-1/2 top-[60%] h-[70%] w-[80%] -translate-x-1/2 rounded-full bg-accent/50 blur-[110px]"></div>
+      </div>
+
+      <svg class="cta-mark relative mx-auto mb-10 h-16 w-auto text-white" viewBox="0 0 605 550" fill="currentColor" aria-hidden="true" style="overflow:visible">
+        <path data-cta-leaf="a" d={T} /><path data-cta-leaf="b" d={M} /><g transform="translate(0 365)"><path data-cta-leaf="c" d={T} /></g>
+      </svg>
+
+      <h2 class="h-display relative mx-auto max-w-[16ch] grad-text" style="font-size:clamp(2.6rem,7vw,5.4rem)" data-reveal>{c.h2}</h2>
+      <p class="lead relative mx-auto mt-7 max-w-[32rem]" data-reveal>{c.lead}</p>
+      <div class="relative mt-11 flex flex-col items-center justify-center gap-3 sm:flex-row" data-reveal>
+        <a href={REGISTER_URL} data-magnetic class="btn btn-primary btn-lg">{c.primary} <Icon name="arrow-right" class="arrow" /></a>
+        <a href={LOGIN_URL} data-magnetic class="btn btn-ghost btn-lg">{c.secondary}</a>
+      </div>
+    </div>
+  </div>
+</section>

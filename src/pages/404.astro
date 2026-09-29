@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InnerHero from '../components/InnerHero.astro';
+import { ui } from '../i18n/ui';
+const lang = Astro.url.pathname.startsWith('/en/') ? 'en' : 'es';
+const t = ui[lang].common;
+---
+<Layout title={t.notFoundTitle} description={t.notFoundText} lang={lang} noindex>
+  <InnerHero eyebrow="404" title={t.notFoundTitle} lead={t.notFoundText}>
+    <a href={lang === 'en' ? '/en/' : '/'} class="btn btn-primary btn-lg">{t.goHome}</a>
+  </InnerHero>
+  <div class="pb-40"></div>
+</Layout>

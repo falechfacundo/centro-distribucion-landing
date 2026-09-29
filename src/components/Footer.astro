@@ -1,0 +1,56 @@
+---
+import Logo from './Logo.astro';
+import { REGISTER_URL, LOGIN_URL } from '../config';
+import { url, featureKeys, compareKeys, type Lang } from '../i18n/routes';
+import { ui, featureNav, competitors } from '../i18n/ui';
+
+interface Props { lang: Lang; switchHref: string }
+const { lang, switchHref } = Astro.props;
+const f = ui[lang].footer;
+const n = ui[lang].nav;
+---
+<footer class="border-t border-line">
+  <div class="wrap grid gap-12 py-16 md:grid-cols-[1.4fr_repeat(4,1fr)]">
+    <div>
+      <a href={url('home', lang)} class="text-white" aria-label="FlowBoard"><Logo size={26} /></a>
+      <p class="mt-4 max-w-[18rem] font-mono text-[0.7rem] uppercase leading-relaxed tracking-[0.14em] text-fg-3">{f.tagline}</p>
+      <a href={switchHref} hreflang={lang === 'es' ? 'en' : 'es'} class="mt-6 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-[0.85rem] text-fg-2 transition-colors hover:text-white">{f.lang}</a>
+    </div>
+    <nav aria-label={f.cols.product}>
+      <p class="fh">{f.cols.product}</p>
+      <ul class="fl">
+        {featureKeys.map((k) => <li><a href={url(k, lang)}>{featureNav[k][lang][0]}</a></li>)}
+      </ul>
+    </nav>
+    <nav aria-label={f.cols.compare}>
+      <p class="fh">{f.cols.compare}</p>
+      <ul class="fl">
+        {compareKeys.map((k) => <li><a href={url(k, lang)}>{f.vs(competitors[k.replace('cmp-', '') as keyof typeof competitors])}</a></li>)}
+      </ul>
+    </nav>
+    <nav aria-label={f.cols.company}>
+      <p class="fh">{f.cols.company}</p>
+      <ul class="fl">
+        <li><a href={url('pricing', lang)}>{n.pricing}</a></li>
+        <li><a href={url('blog', lang)}>{n.blog}</a></li>
+        <li><a href={url('changelog', lang)}>{n.changelog}</a></li>
+        <li><a href={url('contact', lang)}>{f.contact}</a></li>
+        <li><a href={REGISTER_URL}>{f.signup}</a></li>
+        <li><a href={LOGIN_URL}>{f.login}</a></li>
+      </ul>
+    </nav>
+    <nav aria-label={f.cols.legal}>
+      <p class="fh">{f.cols.legal}</p>
+      <ul class="fl">
+        <li><a href={url('terms', lang)}>{f.terms}</a></li>
+        <li><a href={url('privacy', lang)}>{f.privacy}</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap border-t border-line py-6 text-[0.8rem] text-fg-3">© {new Date().getFullYear()} FlowBoard. {f.rights}</div>
+</footer>
+<style is:global>
+  .fh { margin-bottom: 1rem; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--color-fg-3); }
+  .fl { list-style: none; margin: 0; padding: 0; display: grid; gap: .65rem; font-size: .92rem; }
+  .fl a { color: var(--color-fg-2); transition: color .2s; } .fl a:hover { color: #fff; }
+</style>

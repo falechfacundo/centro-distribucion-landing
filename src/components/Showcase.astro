@@ -1,0 +1,214 @@
+---
+import Icon from './Icon.astro';
+import { home, tagColor } from '../i18n/home';
+import type { Lang } from '../i18n/routes';
+interface Props { lang?: Lang }
+const { lang = 'es' } = Astro.props;
+const H = home[lang];
+const c = H.showcase;
+const tags = H.board.tags;
+const steps = c.steps;
+const av: Record<string, string> = { SM: '#6e5cf5', MR: '#0ea5e9', LV: '#ec4899', DP: '#f59e0b' };
+const st: Record<string, [string, string]> = { todo: ['#6b6a7d', c.status.todo], prog: ['#38bdf8', c.status.prog], rev: ['#fbbf24', c.status.rev], done: ['#34d399', c.status.done] };
+const rows = c.rows.map(([t, tag, who, s, d]) => [t, tags[tag], tagColor(tag), who, '', s, d]);
+const bars = c.bars;
+---
+<section id="producto" class="relative" data-showcase>
+  <div class="mx-auto max-w-[900px] px-[var(--gutter)] pb-14 pt-[var(--section-y)] text-center">
+    <p class="eyebrow mb-6" data-reveal>{c.eyebrow}</p>
+    <h2 class="h-section grad-text" data-reveal>{c.h2a}<br />{c.h2b}</h2>
+  </div>
+
+  <div class="sc-track" data-sc-track>
+    <div class="sc-sticky" data-sc-sticky>
+      <div class="wrap-wide grid items-center gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.5fr)] lg:gap-16">
+        <ol class="sc-steps" data-sc-steps>
+          {steps.map((s, i) => (
+            <li>
+              <button type="button" class="sc-step" data-step={i} aria-selected={i === 0}>
+                <span class="sc-ic"><Icon name={s.icon} size={18} /></span>
+                <span class="sc-body">
+                  <span class="sc-title">{s.title}</span>
+                  <span class="sc-text">{s.text}</span>
+                  <span class="sc-bar"><i></i></span>
+                </span>
+              </button>
+            </li>
+          ))}
+        </ol>
+
+        <div class="sc-win">
+          <div class="sc-chrome"><i></i><i></i><i></i><span data-sc-label data-prefix={c.label} data-names={steps.map((x) => x.title).join("|")}>{c.label} · {steps[0].title}</span></div>
+          <div class="sc-stage">
+            <!-- 0 · Tablero -->
+            <div class="view" data-view="0">
+              <div class="grid h-full grid-cols-3 gap-3">
+                {c.boardCols.map(([name, color, cards]: any, ci: number) => (
+                  <div class="mcol">
+                    <div class="mcol-h"><i style={`background:${color};box-shadow:0 0 10px ${color}99`}></i>{name}<b>{cards.length}</b></div>
+                    <div class="grid gap-2">
+                      {cards.map(([t, tg]: any, k: number) => (
+                        <div class="mcard" style={`--i:${ci * 2 + k}`}>
+                          <span class="mtag" style={`--c:${tagColor(tg)}`}><i></i>{tags[tg as keyof typeof tags]}</span>
+                          <p>{t}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- 1 · Lista -->
+            <div class="view" data-view="1">
+              <div class="lst-h"><Icon name="rocket" size={14} /> {c.listHead} <span>{c.listCount}</span></div>
+              <div class="lst">
+                {rows.map(([t, tag, tc, who, pr, s, d]: any, i) => (
+                  <div class="lrow" style={`--i:${i}`}>
+                    <span class="lchk" style={`--s:${st[s][0]}`} data-done={s === 'done'}>{s === 'done' && <Icon name="check" size={11} stroke={3} />}</span>
+                    <span class="ltitle">{t}</span>
+                    <span class="mtag hide-sm" style={`--c:${tc}`}><i></i>{tag}</span>
+                    <span class="lst-st hide-sm" style={`--s:${st[s][0]}`}>{st[s][1]}</span>
+                    <span class="lav" style={`background:${av[who]}`}>{who}</span>
+                    <span class="ldate">{d}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- 2 · Timeline -->
+            <div class="view" data-view="2">
+              <div class="tl-head">
+                {c.weeks.map((w) => <span>{w}</span>)}
+              </div>
+              <div class="tl-body">
+                <div class="tl-today"><span>{c.today}</span></div>
+                {bars.map(([t, l, w, c], i) => (
+                  <div class="tl-row" style={`--i:${i}`}>
+                    <div class="tl-bar" style={`left:${l}%;width:${w}%;--c:${c}`}><span>{t}</span></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- 3 · Sprints -->
+            <div class="view" data-view="3">
+              <div class="sp-top">
+                <div>
+                  <div class="sp-name">{c.sprint.name}</div>
+                  <div class="sp-goal">{c.sprint.goal}</div>
+                </div>
+                <span class="sp-badge"><i></i>{c.sprint.badge}</span>
+              </div>
+              <div class="sp-stats">
+                <div><b>18<small>/27</small></b><span>{c.sprint.done}</span></div>
+                <div><b>67<small>%</small></b><span>{c.sprint.progress}</span></div>
+                <div><b>8</b><span>{c.sprint.days}</span></div>
+              </div>
+              <div class="sp-chart">
+                <svg viewBox="0 0 400 130" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="sp-g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#6e5cf5" stop-opacity=".45" /><stop offset="1" stop-color="#6e5cf5" stop-opacity="0" /></linearGradient>
+                  </defs>
+                  {[26, 52, 78, 104].map((y) => <line x1="0" x2="400" y1={y} y2={y} stroke="rgba(255,255,255,.06)" />)}
+                  <line x1="0" y1="14" x2="400" y2="124" stroke="rgba(255,255,255,.22)" stroke-dasharray="4 5" />
+                  <path class="sp-area" d="M0,14 L50,30 L100,44 L150,50 L200,72 L250,80 L300,96 L300,130 L0,130Z" fill="url(#sp-g)" />
+                  <path class="sp-line" pathLength="1" d="M0,14 L50,30 L100,44 L150,50 L200,72 L250,80 L300,96" fill="none" stroke="#9b8bff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <circle class="sp-dot" cx="300" cy="96" r="4.5" fill="#fff" />
+                </svg>
+                <div class="sp-legend"><span><i style="background:#9b8bff"></i>{c.sprint.real}</span><span><i style="background:rgba(255,255,255,.3)"></i>{c.sprint.ideal}</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .sc-track { position: relative; }
+  .sc-sticky { position: relative; padding-block: 2rem 4rem; }
+  .sc-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .sc-step { display: flex; gap: 16px; width: 100%; text-align: left; padding: 18px 18px; border-radius: 18px; cursor: pointer; transition: background .5s var(--ease-soft), box-shadow .5s; color: var(--color-fg-3); }
+  .sc-step:hover { color: var(--color-fg-2); }
+  .sc-step[aria-selected='true'] { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); box-shadow: inset 0 0 0 1px var(--color-line-strong); color: var(--color-fg); }
+  .sc-ic { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--color-raise); box-shadow: inset 0 0 0 1px var(--color-line); transition: all .5s var(--ease-soft); }
+  .sc-step[aria-selected='true'] .sc-ic { background: linear-gradient(135deg, #7c6bff, #5b48e6); color: #fff; box-shadow: 0 8px 24px -6px rgba(110,92,245,.8), inset 0 1px 0 rgba(255,255,255,.3); }
+  .sc-body { display: block; min-width: 0; }
+  .sc-title { display: block; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.025em; }
+  .sc-text { display: block; overflow: hidden; max-height: 0; opacity: 0; font-size: .95rem; line-height: 1.6; color: var(--color-fg-2); transition: max-height .7s var(--ease-soft), opacity .5s, margin .5s; }
+  .sc-step[aria-selected='true'] .sc-text { max-height: 10rem; opacity: 1; margin-top: 8px; }
+  .sc-bar { display: block; height: 2px; margin-top: 0; border-radius: 4px; background: rgba(255,255,255,.08); overflow: hidden; max-height: 0; transition: max-height .4s, margin .4s; }
+  .sc-step[aria-selected='true'] .sc-bar { max-height: 2px; margin-top: 14px; }
+  .sc-bar i { display: block; height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(var(--p, 0)); background: linear-gradient(90deg, #6e5cf5, #c4baff); }
+
+  .sc-win { position: relative; border-radius: 20px; background: #0e0e12; box-shadow: 0 0 0 1px rgba(255,255,255,.09), 0 50px 100px -30px rgba(0,0,0,.9), 0 30px 90px -30px rgba(110,92,245,.4); overflow: hidden; }
+  .sc-win::before { content: ''; position: absolute; inset: -1px; border-radius: inherit; z-index: 0; background: radial-gradient(600px circle at 80% -10%, rgba(110,92,245,.18), transparent 60%); pointer-events: none; }
+  .sc-chrome { position: relative; z-index: 1; display: flex; align-items: center; gap: 6px; padding: 12px 16px; background: #0a0a0d; border-bottom: 1px solid var(--color-line); }
+  .sc-chrome i { width: 10px; height: 10px; border-radius: 9px; background: #26262e; }
+  .sc-chrome span { margin-left: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-3); }
+  .sc-stage { position: relative; z-index: 1; height: clamp(340px, 29vw, 420px); padding: 22px; }
+  .view { position: absolute; inset: 22px; opacity: 0; transform: translateY(18px) scale(.985); pointer-events: none; filter: blur(6px); transition: opacity .55s var(--ease-soft), transform .7s var(--ease-soft), filter .55s; }
+  [data-active='0'] .view[data-view='0'], [data-active='1'] .view[data-view='1'], [data-active='2'] .view[data-view='2'], [data-active='3'] .view[data-view='3'] { opacity: 1; transform: none; pointer-events: auto; filter: none; }
+
+  /* view 0 */
+  .mcol { padding: 10px; border-radius: 14px; background: rgba(255,255,255,.025); box-shadow: inset 0 0 0 1px rgba(255,255,255,.05); }
+  .mcol-h { display: flex; align-items: center; gap: 8px; padding: 2px 4px 10px; font-size: 12px; font-weight: 600; }
+  .mcol-h i { width: 8px; height: 8px; border-radius: 9px; } .mcol-h b { margin-left: auto; font-weight: 500; color: var(--color-fg-3); font-size: 11px; }
+  .mcard { padding: 10px; border-radius: 10px; background: #17171d; box-shadow: inset 0 0 0 1px rgba(255,255,255,.065); }
+  .mcard p { margin: 8px 0 0; font-size: 12px; font-weight: 550; letter-spacing: -.01em; line-height: 1.3; }
+  .mtag { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px 2px 6px; border-radius: 99px; font-size: 10.5px; font-weight: 500; color: var(--c); background: color-mix(in srgb, var(--c) 13%, transparent); white-space: nowrap; }
+  .mtag i { width: 5px; height: 5px; border-radius: 9px; background: var(--c); }
+  /* view 1 */
+  .lst-h { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 13px; font-weight: 600; color: var(--color-accent-3); } .lst-h span { color: var(--color-fg-3); font-weight: 400; }
+  .lst { display: grid; gap: 2px; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--color-line); padding: 6px; background: rgba(255,255,255,.015); }
+  .lrow { display: grid; grid-template-columns: 22px 1fr auto auto 24px 46px; align-items: center; gap: 14px; padding: 11px 12px; border-radius: 9px; font-size: 12.5px; }
+  .lrow:hover { background: rgba(255,255,255,.04); }
+  .lchk { width: 16px; height: 16px; border-radius: 99px; box-shadow: inset 0 0 0 2px var(--s); display: grid; place-items: center; color: #08080a; }
+  .lchk[data-done='true'] { background: var(--s); }
+  .ltitle { font-weight: 550; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lst-st { font-size: 11px; color: var(--s); padding: 2px 9px; border-radius: 99px; background: color-mix(in srgb, var(--s) 12%, transparent); white-space: nowrap; }
+  .lav { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 99px; font-size: 8.5px; font-weight: 700; }
+  .ldate { color: var(--color-fg-3); font-size: 11.5px; text-align: right; font-variant-numeric: tabular-nums; }
+  /* view 2 */
+  .tl-head { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--color-line); padding-bottom: 10px; font-family: var(--font-mono); font-size: 10.5px; color: var(--color-fg-3); letter-spacing: .06em; text-transform: uppercase; }
+  .tl-body { position: relative; height: calc(100% - 32px); background-image: repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), rgba(255,255,255,.05) calc(25% - 1px) 25%); }
+  .tl-row { position: relative; height: 15.5%; }
+  .tl-bar { position: absolute; top: 50%; height: 30px; transform: translateY(-50%); border-radius: 9px; display: flex; align-items: center; padding: 0 12px; font-size: 11.5px; font-weight: 600; color: #fff; background: linear-gradient(90deg, color-mix(in srgb, var(--c) 55%, #0e0e12), color-mix(in srgb, var(--c) 30%, #0e0e12)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 60%, transparent), 0 8px 20px -8px var(--c); transform-origin: 0 50%; white-space: nowrap; overflow: hidden; }
+  .tl-today { position: absolute; z-index: 3; top: -6px; bottom: 0; left: 38%; width: 1px; background: linear-gradient(#f87171, transparent); }
+  .tl-today span { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); padding: 1px 7px; border-radius: 99px; background: #f87171; color: #fff; font-size: 10px; font-weight: 700; }
+  /* view 3 */
+  .sp-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .sp-name { font-size: 20px; font-weight: 600; letter-spacing: -.03em; } .sp-goal { margin-top: 3px; font-size: 12.5px; color: var(--color-fg-3); }
+  .sp-badge { display: inline-flex; align-items: center; gap: 7px; padding: 4px 11px; border-radius: 99px; font-size: 11.5px; font-weight: 600; color: #34d399; background: rgba(52,211,153,.12); }
+  .sp-badge i { width: 6px; height: 6px; border-radius: 9px; background: #34d399; box-shadow: 0 0 10px #34d399; animation: blink 1.8s infinite; }
+  .sp-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0; }
+  .sp-stats div { padding: 14px 16px; border-radius: 12px; background: rgba(255,255,255,.03); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .sp-stats b { display: block; font-size: 26px; letter-spacing: -.04em; font-weight: 600; } .sp-stats small { font-size: 14px; color: var(--color-fg-3); font-weight: 500; letter-spacing: 0; }
+  .sp-stats span { font-size: 11.5px; color: var(--color-fg-3); }
+  .sp-chart { position: relative; height: calc(100% - 158px); min-height: 110px; padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,.02); box-shadow: inset 0 0 0 1px var(--color-line); }
+  .sp-chart svg { width: 100%; height: 100%; overflow: visible; }
+  .sp-legend { position: absolute; right: 14px; top: 10px; display: flex; gap: 14px; font-size: 11px; color: var(--color-fg-3); } .sp-legend i { display: inline-block; width: 8px; height: 3px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+  .sp-line { stroke-dasharray: 1; stroke-dashoffset: 1; } .sp-area, .sp-dot { opacity: 0; }
+  [data-active='3'] .sp-line { animation: draw 1.6s .2s var(--ease-soft) forwards; }
+  [data-active='3'] .sp-area { animation: fade-in 1s .9s forwards; } [data-active='3'] .sp-dot { animation: fade-in .4s 1.6s forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } } @keyframes fade-in { to { opacity: 1; } }
+
+  /* staggered entrances per active view */
+  .mcard, .lrow, .tl-bar { opacity: 0; transform: translateY(10px); transition: opacity .5s, transform .6s var(--ease-soft); transition-delay: 0s; }
+  [data-active='0'] .view[data-view='0'] .mcard, [data-active='1'] .view[data-view='1'] .lrow { opacity: 1; transform: none; transition-delay: calc(var(--i) * 70ms + 150ms); }
+  .tl-bar { transform: translateY(-50%) scaleX(0); }
+  [data-active='2'] .view[data-view='2'] .tl-bar { opacity: 1; transform: translateY(-50%) scaleX(1); transition-delay: calc(var(--i) * 90ms + 150ms); }
+
+  @media (max-width: 1023px) {
+    .sc-step { padding: 14px; }
+  }
+  @media (max-width: 640px) {
+    .hide-sm { display: none; }
+    .lrow { grid-template-columns: 22px 1fr 24px 46px; }
+    .sc-stage { padding: 14px; } .view { inset: 14px; }
+    .mcol:nth-child(3) { display: none; } .grid.grid-cols-3:has(.mcol) { grid-template-columns: repeat(2, 1fr); }
+    .sp-stats b { font-size: 20px; }
+  }
+</style>

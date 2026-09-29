@@ -1,0 +1,16 @@
+/* long-form text (legal, blog) */
+.prose-fb { color: var(--color-fg-2); font-size: 1.05rem; line-height: 1.8; }
+.prose-fb h2 { margin: 2.6rem 0 .9rem; color: var(--color-fg); font-size: 1.5rem; font-weight: 600; letter-spacing: -.03em; line-height: 1.2; }
+.prose-fb h3 { margin: 2rem 0 .7rem; color: var(--color-fg); font-size: 1.2rem; font-weight: 600; letter-spacing: -.02em; }
+.prose-fb p { margin: 0 0 1.1rem; text-wrap: pretty; }
+.prose-fb ul, .prose-fb ol { margin: 0 0 1.2rem; padding-left: 1.3rem; display: grid; gap: .5rem; }
+.prose-fb ul { list-style: disc; } .prose-fb ol { list-style: decimal; }
+.prose-fb li::marker { color: var(--color-accent-2); }
+.prose-fb a { color: var(--color-accent-3); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(196, 186, 255, .4); }
+.prose-fb a:hover { text-decoration-color: var(--color-accent-3); }
+.prose-fb strong { color: var(--color-fg); font-weight: 600; }
+.prose-fb blockquote { margin: 1.6rem 0; padding: .4rem 0 .4rem 1.3rem; border-left: 2px solid var(--color-accent-2); color: var(--color-fg); }
+.prose-fb code { font-family: var(--font-mono); font-size: .9em; padding: .1em .4em; border-radius: 6px; background: rgba(255, 255, 255, .07); }
+.prose-fb table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .95rem; }
+.prose-fb th, .prose-fb td { padding: .7rem .9rem; text-align: left; border-bottom: 1px solid var(--color-line); }
+.prose-fb th { color: var(--color-fg); font-weight: 600; }

@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InnerHero from '../components/InnerHero.astro';
+import Icon from '../components/Icon.astro';
+import { getPosts, slugOf } from '../i18n/blog';
+import { ui } from '../i18n/ui';
+import { url, blogUrl, type Lang } from '../i18n/routes';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang].common;
+const posts = await getPosts(lang);
+const copy = {
+  es: { title: 'Blog', desc: 'Guías y buenas prácticas sobre gestión de proyectos, metodologías ágiles, OKRs y productividad de equipos.', h1: 'Ideas para equipos que quieren fluir.', lead: 'Guías prácticas sobre gestión de proyectos, metodologías ágiles y objetivos.' },
+  en: { title: 'Blog', desc: 'Guides and best practices on project management, agile methodologies, OKRs and team productivity.', h1: 'Ideas for teams that want to flow.', lead: 'Practical guides on project management, agile methodologies and goals.' },
+}[lang];
+const fmt = new Intl.DateTimeFormat(lang === 'es' ? 'es-AR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+const crumbs = [{ name: t.breadcrumbHome, href: url('home', lang) }, { name: copy.title, href: url('blog', lang) }];
+---
+<Layout title={copy.title} description={copy.desc} lang={lang} routeKey="blog" breadcrumbs={crumbs}>
+  <InnerHero eyebrow={copy.title} title={copy.h1} lead={copy.lead} />
+  <section class="section !pt-4 pb-28">
+    <div class="wrap max-w-[1000px]">
+      <ul class="grid gap-5 md:grid-cols-2">
+        {posts.map((p) => (
+          <li data-reveal>
+            <a href={blogUrl(slugOf(p), lang)} class="post spot">
+              <span class="post-tag">{p.data.tag}</span>
+              <h2>{p.data.title}</h2>
+              <p>{p.data.description}</p>
+              <span class="post-meta"><time datetime={p.data.date.toISOString()}>{fmt.format(p.data.date)}</time> · {p.data.minutes} {t.minutes}<Icon name="arrow-right" size={16} class="post-arrow" /></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Layout>
+<style is:global>
+  .post { position: relative; display: flex; flex-direction: column; height: 100%; padding: 2rem; border-radius: 26px; background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)); box-shadow: inset 0 0 0 1px var(--color-line), inset 0 1px 0 rgba(255,255,255,.06); transition: transform .5s var(--ease-soft); }
+  .post:hover { transform: translateY(-4px); }
+  .post-tag { align-self: flex-start; padding: 3px 11px; border-radius: 99px; font-size: .72rem; font-weight: 600; color: var(--color-accent-3); background: rgba(110,92,245,.16); }
+  .post h2 { margin-top: 1.2rem; font-size: 1.5rem; font-weight: 600; letter-spacing: -.03em; line-height: 1.2; text-wrap: balance; }
+  .post p { margin-top: .8rem; color: var(--color-fg-2); line-height: 1.6; }
+  .post-meta { display: flex; align-items: center; gap: .4rem; margin-top: auto; padding-top: 1.6rem; font-size: .82rem; color: var(--color-fg-3); }
+  .post-arrow { margin-left: auto; transition: transform .4s var(--ease-soft), color .3s; } .post:hover .post-arrow { transform: translateX(4px); color: #fff; }
+</style>

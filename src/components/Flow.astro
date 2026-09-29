@@ -1,0 +1,57 @@
+---
+import Icon from './Icon.astro';
+import { home } from '../i18n/home';
+import type { Lang } from '../i18n/routes';
+interface Props { lang?: Lang }
+const { lang = 'es' } = Astro.props;
+const c = home[lang].flow;
+const steps = c.steps;
+---
+<section id="flujo" class="section overflow-hidden" data-flow>
+  <div class="pointer-events-none absolute left-1/2 top-1/2 h-[60vmin] w-[90vmin] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[130px]" aria-hidden="true"></div>
+  <div class="wrap relative">
+    <div class="mx-auto max-w-[760px] text-center">
+      <p class="eyebrow mb-6" data-reveal>{c.eyebrow}</p>
+      <h2 class="h-section grad-text" data-reveal>{c.h2}</h2>
+    </div>
+
+    <div class="flow mt-20 md:mt-24" data-flow-steps>
+      <div class="flow-rail" aria-hidden="true"><i data-flow-fill></i></div>
+      <ol class="flow-grid">
+        {steps.map(([ic, t, d], i) => (
+          <li class="flow-item" data-flow-item>
+            <div class="flow-node">
+              <span class="flow-num">0{i + 1}</span>
+              <Icon name={ic} size={22} />
+            </div>
+            <h3>{t}</h3>
+            <p>{d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .flow { position: relative; }
+  .flow-rail { position: absolute; left: 0; right: 0; top: 32px; height: 2px; background: rgba(255,255,255,.08); border-radius: 2px; }
+  .flow-rail i { position: absolute; inset: 0; transform-origin: 0 50%; transform: scaleX(var(--p, 0)); background: linear-gradient(90deg, #6e5cf5, #c4baff); box-shadow: 0 0 16px rgba(155,139,255,.9); border-radius: 2px; }
+  .flow-grid { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .flow-item { padding-right: 1rem; }
+  .flow-node { position: relative; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 20px; margin-bottom: 1.6rem; color: var(--color-fg-3); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line-strong); transition: all .6s var(--ease-soft); }
+  .flow-item.on .flow-node { color: #fff; background: linear-gradient(135deg, #7c6bff, #5b48e6); box-shadow: 0 12px 34px -8px rgba(110,92,245,.9), inset 0 1px 0 rgba(255,255,255,.35); transform: translateY(-4px); }
+  .flow-num { position: absolute; top: -9px; right: -9px; padding: 1px 6px; border-radius: 99px; background: var(--color-base); box-shadow: 0 0 0 1px var(--color-line-strong); font-family: var(--font-mono); font-size: 10px; color: var(--color-fg-3); }
+  .flow-item h3 { font-size: 1.3rem; font-weight: 600; letter-spacing: -.03em; color: var(--color-fg-3); transition: color .6s; }
+  .flow-item.on h3 { color: var(--color-fg); }
+  .flow-item p { margin-top: .6rem; color: var(--color-fg-3); font-size: .95rem; line-height: 1.6; max-width: 26ch; transition: color .6s; }
+  .flow-item.on p { color: var(--color-fg-2); }
+  @media (max-width: 899px) {
+    .flow-rail { left: 31px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; }
+    .flow-rail i { transform-origin: 50% 0; transform: scaleY(var(--p, 0)); }
+    .flow-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .flow-item { display: grid; grid-template-columns: 64px 1fr; column-gap: 1.4rem; }
+    .flow-node { grid-row: span 2; margin: 0; }
+    .flow-item p { margin-top: .3rem; max-width: none; }
+  }
+</style>
