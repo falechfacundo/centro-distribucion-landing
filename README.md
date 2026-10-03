@@ -3,15 +3,23 @@
 Landing page de FlowBoard, construida con **Astro 7 + Tailwind v4 + GSAP (ScrollTrigger, Flip) + Lenis**.
 Es un repo independiente del producto (`kanban-nextjs`).
 
+## Estado
+
+| | |
+| --- | --- |
+| Deploy | ❌ Sin dominio propio. Default de `PUBLIC_SITE_URL`: `https://flowboard-landing.vercel.app` |
+| Producto | Sin billing: la página de precios describe planes que el producto todavía no cobra |
+
 ## Comandos
 
 | Comando | Acción |
 |---|---|
-| `npm install` | Instala dependencias |
-| `npm run dev` | Dev server en `http://localhost:4321` |
-| `npm run build` | Build estático a `dist/` |
-| `npm run preview` | Sirve el build |
-| `npm run check` | Type-check de Astro/TS |
+| `pnpm install` | Instala dependencias |
+| `pnpm dev` | Dev server en `http://localhost:4321` |
+| `pnpm build` | Build estático a `dist/` |
+| `pnpm preview` | Sirve el build |
+| `pnpm check` | Type-check de Astro/TS |
+| `pnpm icons` | Copia a `src/icons` solo los íconos lucide usados |
 
 ## Configuración
 
@@ -47,7 +55,7 @@ scripts/sync-icons.mjs  Copia a src/icons solo los íconos lucide usados (corre 
 
 - Nueva página estática: agregar la ruta en `src/i18n/routes.ts` y su contenido/vista.
 - Nuevo artículo: crear `src/content/blog/es/<slug>.md` y `en/<slug>.md` con el mismo `translationKey`.
-- Al usar un ícono nuevo de lucide, `npm run icons` (dev/build ya lo hacen).
+- Al usar un ícono nuevo de lucide, `pnpm icons` (dev/build ya lo hacen).
 
 ## Notas
 
