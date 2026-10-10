@@ -265,7 +265,7 @@ if (finePointer) {
     if (i === current) return;
     current = i;
     root.setAttribute('data-active', String(i));
-    steps.forEach((s, k) => s.setAttribute('aria-selected', String(k === i)));
+    steps.forEach((s, k) => s.setAttribute('aria-current', String(k === i)));
     if (label) label.textContent = `${prefix} · ${names[i]}`;
   };
   setStep(0);

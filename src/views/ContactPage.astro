@@ -19,7 +19,7 @@ const crumbs = [{ name: t.breadcrumbHome, href: url('home', lang) }, { name: c.m
     <div class="wrap max-w-[960px]">
       <ul class="grid gap-4 md:grid-cols-3">
         {c.topics.map(([ic, title, text]) => (
-          <li class="fcap spot" data-reveal><span class="fcap-ic"><Icon name={ic} size={20} /></span><h3>{title}</h3><p>{text}</p></li>
+          <li class="fcap spot" data-reveal><span class="fcap-ic"><Icon name={ic} size={20} /></span><h2>{title}</h2><p>{text}</p></li>
         ))}
       </ul>
       <div class="cta noise relative mt-6 overflow-hidden rounded-[2rem] px-6 py-14 text-center" data-reveal>

@@ -9,7 +9,9 @@ const c = H.showcase;
 const tags = H.board.tags;
 const steps = c.steps;
 const av: Record<string, string> = { SM: '#6e5cf5', MR: '#0ea5e9', LV: '#ec4899', DP: '#f59e0b' };
-const st: Record<string, [string, string]> = { todo: ['#6b6a7d', c.status.todo], prog: ['#38bdf8', c.status.prog], rev: ['#fbbf24', c.status.rev], done: ['#34d399', c.status.done] };
+// texto de cada avatar: blanco solo donde llega a 4.5:1 (violeta); oscuro sobre celeste, rosa y ámbar
+const avText: Record<string, string> = { SM: '#fff', MR: '#08080a', LV: '#08080a', DP: '#08080a' };
+const st: Record<string, [string, string]> = { todo: ['#858496', c.status.todo], prog: ['#38bdf8', c.status.prog], rev: ['#fbbf24', c.status.rev], done: ['#34d399', c.status.done] };
 const rows = c.rows.map(([t, tag, who, s, d]) => [t, tags[tag], tagColor(tag), who, '', s, d]);
 const bars = c.bars;
 ---
@@ -25,7 +27,7 @@ const bars = c.bars;
         <ol class="sc-steps" data-sc-steps>
           {steps.map((s, i) => (
             <li>
-              <button type="button" class="sc-step" data-step={i} aria-selected={i === 0}>
+              <button type="button" class="sc-step" data-step={i} aria-current={i === 0 ? 'true' : 'false'}>
                 <span class="sc-ic"><Icon name={s.icon} size={18} /></span>
                 <span class="sc-body">
                   <span class="sc-title">{s.title}</span>
@@ -69,7 +71,7 @@ const bars = c.bars;
                     <span class="ltitle">{t}</span>
                     <span class="mtag hide-sm" style={`--c:${tc}`}><i></i>{tag}</span>
                     <span class="lst-st hide-sm" style={`--s:${st[s][0]}`}>{st[s][1]}</span>
-                    <span class="lav" style={`background:${av[who]}`}>{who}</span>
+                    <span class="lav" style={`background:${av[who]};color:${avText[who]}`}>{who}</span>
                     <span class="ldate">{d}</span>
                   </div>
                 ))}
@@ -132,15 +134,15 @@ const bars = c.bars;
   .sc-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
   .sc-step { display: flex; gap: 16px; width: 100%; text-align: left; padding: 18px 18px; border-radius: 18px; cursor: pointer; transition: background .5s var(--ease-soft), box-shadow .5s; color: var(--color-fg-3); }
   @media (hover: hover) { .sc-step:hover { color: var(--color-fg-2); } }
-  .sc-step[aria-selected='true'] { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); box-shadow: inset 0 0 0 1px var(--color-line-strong); color: var(--color-fg); }
+  .sc-step[aria-current='true'] { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); box-shadow: inset 0 0 0 1px var(--color-line-strong); color: var(--color-fg); }
   .sc-ic { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--color-raise); box-shadow: inset 0 0 0 1px var(--color-line); transition: all .5s var(--ease-soft); }
-  .sc-step[aria-selected='true'] .sc-ic { background: linear-gradient(135deg, #7c6bff, #5b48e6); color: #fff; box-shadow: 0 8px 24px -6px rgba(110,92,245,.8), inset 0 1px 0 rgba(255,255,255,.3); }
+  .sc-step[aria-current='true'] .sc-ic { background: linear-gradient(135deg, #7c6bff, #5b48e6); color: #fff; box-shadow: 0 8px 24px -6px rgba(110,92,245,.8), inset 0 1px 0 rgba(255,255,255,.3); }
   .sc-body { display: block; min-width: 0; }
   .sc-title { display: block; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.025em; }
   .sc-text { display: block; overflow: hidden; max-height: 0; opacity: 0; font-size: .95rem; line-height: 1.6; color: var(--color-fg-2); transition: max-height .7s var(--ease-soft), opacity .5s, margin .5s; }
-  .sc-step[aria-selected='true'] .sc-text { max-height: 10rem; opacity: 1; margin-top: 8px; }
+  .sc-step[aria-current='true'] .sc-text { max-height: 10rem; opacity: 1; margin-top: 8px; }
   .sc-bar { display: block; height: 2px; margin-top: 0; border-radius: 4px; background: rgba(255,255,255,.08); overflow: hidden; max-height: 0; transition: max-height .4s, margin .4s; }
-  .sc-step[aria-selected='true'] .sc-bar { max-height: 2px; margin-top: 14px; }
+  .sc-step[aria-current='true'] .sc-bar { max-height: 2px; margin-top: 14px; }
   .sc-bar i { display: block; height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(var(--p, 0)); background: linear-gradient(90deg, #6e5cf5, #c4baff); }
 
   .sc-win { position: relative; border-radius: 20px; background: #0e0e12; box-shadow: 0 0 0 1px rgba(255,255,255,.09), 0 50px 100px -30px rgba(0,0,0,.9), 0 30px 90px -30px rgba(110,92,245,.4); overflow: hidden; }
