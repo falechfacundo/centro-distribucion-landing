@@ -9,7 +9,10 @@ const $ = <T extends HTMLElement = HTMLElement>(sel: string, root: ParentNode = 
 const $$ = <T extends HTMLElement = HTMLElement>(sel: string, root: ParentNode = document) => Array.from(root.querySelectorAll<T>(sel));
 const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
-const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const root = document.documentElement;
+root.dataset.motion = 'ready';
+// sin js-motion (reduced motion o fallback por timeout en Layout) el contenido ya es visible: no animar
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches || !root.classList.contains('js-motion');
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 /* ---------- static fallbacks (reduced motion) ---------- */

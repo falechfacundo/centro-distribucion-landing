@@ -70,7 +70,12 @@ const ld = [org, ...(crumbs ? [crumbs] : []), ...jsonLd];
     <meta name="twitter:image" content={abs(ogImage)} />
     <JsonLd data={ld} />
     <script is:inline>
-      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js-motion');
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const d = document.documentElement;
+        d.classList.add('js-motion');
+        // si motion.ts no corre (falla de red/JS), mostrar el contenido en vez de dejarlo oculto
+        setTimeout(() => { if (!d.dataset.motion) d.classList.remove('js-motion'); }, 4000);
+      }
     </script>
   </head>
   <body>
