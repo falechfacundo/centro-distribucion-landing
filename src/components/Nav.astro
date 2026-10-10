@@ -12,9 +12,9 @@ const homeHref = url('home', lang);
 ---
 <div id="progress" class="fixed left-0 top-0 z-[60] h-[2px] w-full origin-left scale-x-0 bg-gradient-to-r from-accent via-accent-2 to-accent-3"></div>
 <header id="nav" class="fixed inset-x-0 top-0 z-50">
-  <div class="wrap-wide pt-4">
-    <nav id="nav-bar" class="mx-auto flex h-14 max-w-[1120px] items-center justify-between rounded-full border border-transparent pl-5 pr-2 transition-all duration-500" aria-label="Principal">
-      <a href={homeHref} aria-label={t.home} class="text-white"><Logo size={22} /></a>
+  <div class="wrap-wide pt-4 max-sm:!px-3">
+    <nav id="nav-bar" class="mx-auto flex h-14 max-w-[1120px] items-center justify-between gap-3 rounded-full border border-transparent pl-4 pr-1.5 transition-all duration-500 sm:pl-5 sm:pr-2" aria-label="Principal">
+      <a href={homeHref} aria-label={t.home} class="shrink-0 text-white"><Logo size={22} /></a>
 
       <ul class="hidden items-center gap-0.5 lg:flex">
         <li class="dd">
@@ -47,11 +47,11 @@ const homeHref = url('home', lang);
         <li><a class="nl" href={url('changelog', lang)}>{t.changelog}</a></li>
       </ul>
 
-      <div class="flex items-center gap-1">
+      <div class="flex shrink-0 items-center gap-1">
         <a href={switchHref} hreflang={lang === 'es' ? 'en' : 'es'} class="nl hidden sm:inline-flex !px-3 font-mono text-[0.72rem] uppercase tracking-wider" aria-label={ui[lang].footer.lang}>{lang === 'es' ? 'EN' : 'ES'}</a>
         <a href={LOGIN_URL} class="nl hidden sm:inline-flex">{t.login}</a>
-        <a href={REGISTER_URL} class="btn btn-primary btn-sm">{t.cta}</a>
-        <button type="button" id="nav-toggle" class="ml-1 grid h-10 w-10 place-items-center rounded-full text-white lg:hidden" aria-label={t.menu} aria-expanded="false" aria-controls="mobile-menu">
+        <a href={REGISTER_URL} class="btn btn-primary btn-sm max-[359px]:!hidden max-sm:!px-3.5">{t.cta}</a>
+        <button type="button" id="nav-toggle" class="grid h-11 w-11 place-items-center rounded-full text-white sm:ml-1 lg:hidden" aria-label={t.menu} aria-expanded="false" aria-controls="mobile-menu">
           <Icon name="menu" size={22} class="i-open" /><Icon name="x" size={22} class="i-close" />
         </button>
       </div>
@@ -80,6 +80,7 @@ const homeHref = url('home', lang);
         <li><a href={switchHref} hreflang={lang === 'es' ? 'en' : 'es'}>{ui[lang].footer.lang}</a></li>
         <li><a href={LOGIN_URL}>{t.login}</a></li>
       </ul>
+      <a href={REGISTER_URL} class="btn btn-primary btn-lg mt-8 w-full">{t.cta}</a>
     </div>
 </div>
 
