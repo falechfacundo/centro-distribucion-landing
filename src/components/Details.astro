@@ -30,9 +30,9 @@ const items = c.items;
 <style is:global>
   .det-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; border-radius: 28px; overflow: hidden; background: var(--color-line); box-shadow: 0 0 0 1px var(--color-line); }
   .det { padding: clamp(1.4rem, 2.6vw, 2.2rem); background: var(--color-base); transition: background .4s; }
-  .det:hover { background: #101015; }
+  @media (hover: hover) { .det:hover { background: #101015; } }
   .det-ic { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; margin-bottom: 1.6rem; color: var(--color-accent-3); background: rgba(110,92,245,.12); box-shadow: inset 0 0 0 1px rgba(110,92,245,.28); transition: transform .5s var(--ease-soft); }
-  .det:hover .det-ic { transform: translateY(-3px) rotate(-4deg); }
+  @media (hover: hover) { .det:hover .det-ic { transform: translateY(-3px) rotate(-4deg); } }
   .det h3 { font-size: 1.15rem; font-weight: 600; letter-spacing: -.025em; }
   .det p { margin-top: .5rem; font-size: .93rem; line-height: 1.6; color: var(--color-fg-2); }
   @media (max-width: 560px) { .det-grid { grid-template-columns: 1fr; } }
