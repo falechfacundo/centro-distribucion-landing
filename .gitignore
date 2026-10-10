@@ -3,3 +3,10 @@ dist
 .astro
 .vercel
 .env*
+
+# Playwright
+test-results
+playwright-report
+blob-report
+# capturas de referencia: dependen del SO, se generan localmente (docs/testing.md)
+tests/__screenshots__

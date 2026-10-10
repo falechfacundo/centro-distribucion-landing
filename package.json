@@ -8,7 +8,12 @@
     "build": "node scripts/sync-icons.mjs && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "icons": "node scripts/sync-icons.mjs"
+    "icons": "node scripts/sync-icons.mjs",
+    "test:e2e": "playwright test --grep-invert @visual",
+    "test:e2e:ui": "playwright test --ui",
+    "test:mobile": "playwright test --grep-invert @visual --project=iphone-se --project=iphone-14 --project=pixel-7",
+    "test:visual": "playwright test --grep @visual",
+    "test:visual:update": "playwright test --grep @visual --update-snapshots"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -23,6 +28,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@playwright/test": "^1.64.0",
     "typescript": "^6.0.3"
   },
   "packageManager": "pnpm@12.4.2"
