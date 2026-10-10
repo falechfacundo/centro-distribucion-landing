@@ -59,7 +59,7 @@ const homeHref = url('home', lang);
   </div>
 </header>
 
-<div id="mobile-menu" class="mm lg:hidden" hidden>
+<div id="mobile-menu" class="mm lg:hidden" hidden data-lenis-prevent>
     <div class="wrap pb-10 pt-24">
       <p class="mm-h">{t.product}</p>
       <ul class="mm-list">
@@ -106,7 +106,7 @@ const homeHref = url('home', lang);
   .dd-ic { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: var(--color-accent-3); background: rgba(110,92,245,.14); box-shadow: inset 0 0 0 1px rgba(110,92,245,.28); }
 
   #nav-toggle .i-close { display: none; } #nav.menu-open #nav-toggle .i-close { display: block; } #nav.menu-open #nav-toggle .i-open { display: none; }
-  .mm { position: fixed; inset: 0; z-index: 40; overflow-y: auto; background: rgba(9,9,12,.97); backdrop-filter: blur(20px); }
+  .mm { position: fixed; inset: 0; z-index: 40; overflow-y: auto; overscroll-behavior: contain; background: rgba(9,9,12,.97); }
   .mm[hidden] { display: none; }
   .mm-h { margin: 1.4rem 0 .5rem; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--color-fg-3); }
   .mm-list { list-style: none; margin: 0; padding: 0; display: grid; }
@@ -120,12 +120,19 @@ const homeHref = url('home', lang);
   const menu = document.getElementById('mobile-menu');
   const set = (open: boolean) => {
     if (!nav || !btn || !menu) return;
+    if (open === (btn.getAttribute('aria-expanded') === 'true')) return;
     nav.classList.toggle('menu-open', open);
     btn.setAttribute('aria-expanded', String(open));
     menu.hidden = !open;
     document.documentElement.style.overflow = open ? 'hidden' : '';
+    document.querySelectorAll<HTMLElement>('#main, body > footer').forEach((el) => (el.inert = open));
+    // motion.ts frena/reanuda Lenis para que la rueda no scrollee la página de fondo
+    document.dispatchEvent(new CustomEvent('menu:toggle', { detail: open }));
+    if (open) menu.querySelector('a')?.focus();
+    else btn.focus({ preventScroll: true });
   };
   btn?.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
   menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => set(false)));
   addEventListener('keydown', (e) => e.key === 'Escape' && set(false));
+  matchMedia('(min-width: 1024px)').addEventListener('change', (e) => e.matches && set(false));
 </script>
