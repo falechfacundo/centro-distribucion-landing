@@ -6,10 +6,7 @@ import { waitForFonts, waitForMotionReady } from './helpers/motion';
  * Deuda conocida: overflow real todavía sin corregir. Marcado con test.fail para que el CI siga verde
  * y avise (el test "pasa inesperadamente") cuando se arregle y haya que quitar la entrada.
  */
-const KNOWN_OVERFLOW: Record<string, { maxWidth: number; why: string }> = {
-  'es:post:kanban-vs-scrum': { maxWidth: 359, why: 'tabla de .prose-fb sin scroll horizontal (src/styles/prose.css)' },
-  'en:post:kanban-vs-scrum': { maxWidth: 359, why: 'tabla de .prose-fb sin scroll horizontal (src/styles/prose.css)' },
-};
+const KNOWN_OVERFLOW: Record<string, { maxWidth: number; why: string }> = {};
 
 for (const p of allPages) {
   test(`sin overflow horizontal · ${p.name}`, async ({ page }, info) => {

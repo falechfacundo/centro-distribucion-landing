@@ -53,4 +53,6 @@ const n = ui[lang].nav;
   .fh { margin-bottom: 1rem; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--color-fg-3); }
   .fl { list-style: none; margin: 0; padding: 0; display: grid; gap: .65rem; font-size: .92rem; }
   .fl a { color: var(--color-fg-2); transition: color .2s; } .fl a:hover { color: #fff; }
+  /* en pantallas táctiles cada link ocupa 44px de alto (el gap pasa a 0 para no estirar de más la lista) */
+  @media (pointer: coarse) { .fl { gap: 0; } .fl a { display: flex; align-items: center; min-height: 44px; } footer a[hreflang] { min-height: 44px; } }
 </style>

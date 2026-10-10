@@ -10,16 +10,7 @@ const MIN = 44;
  * Se excluyen del chequeo general y se vigilan en el test `deuda conocida` (marcado test.fail):
  * cuando se arreglen, ese test empieza a pasar y Playwright avisa para quitar la entrada.
  */
-const KNOWN: { selector: string; why: string }[] = [
-  { selector: 'footer .fl a', why: 'links del footer (~19px de alto)' },
-  { selector: 'footer a[hreflang]', why: 'selector de idioma del footer (38px)' },
-  { selector: '#nav-bar > a', why: 'logo del nav (29px)' },
-  { selector: '#nav-bar .btn-sm', why: 'CTA del nav (btn-sm, 38px)' },
-  { selector: '#nav-bar .nl', why: 'links "EN"/"Ingresar" del nav desde 640px (33-38px)' },
-  { selector: 'nav[aria-label="Breadcrumb"] a', why: 'breadcrumbs (17px)' },
-  { selector: 'a[href^="mailto:"]', why: 'email en /contacto (36px)' },
-  { selector: 'main a.mt-12[href$="/blog/"]', why: '"← Volver" en posts (22px)' },
-];
+const KNOWN: { selector: string; why: string }[] = [];
 
 type Target = { desc: string; w: number; h: number; known: boolean };
 

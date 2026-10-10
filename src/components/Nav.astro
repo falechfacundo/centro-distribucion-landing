@@ -14,7 +14,7 @@ const homeHref = url('home', lang);
 <header id="nav" class="fixed inset-x-0 top-0 z-50">
   <div class="wrap-wide pt-4 max-sm:!px-3">
     <nav id="nav-bar" class="mx-auto flex h-14 max-w-[1120px] items-center justify-between gap-3 rounded-full border border-transparent pl-4 pr-1.5 transition-all duration-500 sm:pl-5 sm:pr-2" aria-label="Principal">
-      <a href={homeHref} aria-label={t.home} class="shrink-0 text-white"><Logo size={22} /></a>
+      <a href={homeHref} aria-label={t.home} class="inline-flex min-h-11 shrink-0 items-center text-white"><Logo size={22} /></a>
 
       <ul class="hidden items-center gap-0.5 lg:flex">
         <li class="dd">
@@ -105,6 +105,8 @@ const homeHref = url('home', lang);
   .dd-simple { align-items: center; padding: 10px 14px; white-space: nowrap; }
   .dd-ic { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: var(--color-accent-3); background: rgba(110,92,245,.14); box-shadow: inset 0 0 0 1px rgba(110,92,245,.28); }
 
+  /* targets táctiles de 44px solo en pantallas táctiles: con mouse el nav queda igual */
+  @media (pointer: coarse) { #nav-bar .btn-sm, #nav-bar .nl { min-height: 2.75rem; } #nav-bar .nl { min-width: 2.75rem; justify-content: center; } #nav-bar .btn-sm { height: 2.75rem; } }
   #nav-toggle .i-close { display: none; } #nav.menu-open #nav-toggle .i-close { display: block; } #nav.menu-open #nav-toggle .i-open { display: none; }
   .mm { position: fixed; inset: 0; z-index: 40; overflow-y: auto; overscroll-behavior: contain; background: rgba(9,9,12,.97); }
   .mm[hidden] { display: none; }

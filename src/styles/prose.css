@@ -14,3 +14,5 @@
 .prose-fb table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: .95rem; }
 .prose-fb th, .prose-fb td { padding: .7rem .9rem; text-align: left; border-bottom: 1px solid var(--color-line); }
 .prose-fb th { color: var(--color-fg); font-weight: 600; }
+/* en pantallas angostas la tabla scrollea horizontalmente en vez de desbordar la página */
+@media (max-width: 640px) { .prose-fb table { display: block; overflow-x: auto; } }
