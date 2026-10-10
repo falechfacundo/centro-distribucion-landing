@@ -20,6 +20,10 @@ Es un repo independiente del producto (`kanban-nextjs`).
 | `pnpm preview` | Sirve el build |
 | `pnpm check` | Type-check de Astro/TS |
 | `pnpm icons` | Copia a `src/icons` solo los íconos lucide usados |
+| `pnpm test:e2e` | Playwright contra el build en 6 dispositivos (ver `docs/testing.md`) |
+| `pnpm build && pnpm lighthouse` | Lighthouse CI mobile + desktop |
+
+Documentación técnica en [`CLAUDE.md`](CLAUDE.md) y [`docs/`](docs/) (design system, animaciones, testing, contexto).
 
 ## Configuración
 
