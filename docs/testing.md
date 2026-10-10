@@ -36,6 +36,9 @@ Helpers en `tests/helpers/`: `pages.ts` (rutas desde `src/i18n/routes.ts` y `src
 (`waitForFonts`, `waitForMotionReady`, `settleAnimations`, `freezeAnimations`), `errors.ts`, `viewport.ts`.
 Las páginas nuevas del registro de rutas o posts nuevos entran solos en la suite.
 
+> **WebKit en Windows**: con muchos workers puede crashear ("Page crashed", worker con código `3221226505`) en
+> páginas al azar. No es un bug del sitio: repetir con `--workers=2`. En CI (Linux) no pasa.
+
 ### Reportes
 
 - `pnpm exec playwright show-report`: abre el reporte HTML (`playwright-report/`).
@@ -53,12 +56,14 @@ Flujo local: antes de un cambio visual, `pnpm test:visual:update` (genera la ref
 
 ### Deuda conocida (`test.fail`)
 
-Problemas reales sin corregir que están marcados como "fallo esperado" para que el CI quede en verde. Cuando se
-arreglan, el test **pasa inesperadamente** y Playwright lo marca en rojo: ahí hay que borrar la entrada.
+Mecanismo para registrar problemas reales que no se pueden corregir en el mismo PR: se marcan como "fallo esperado"
+para que el CI quede en verde. Cuando se arreglan, el test **pasa inesperadamente** y Playwright lo marca en rojo:
+ahí hay que borrar la entrada.
 
-- `touch-targets.spec.ts` → `KNOWN`: links del footer, selector de idioma, logo y CTA del nav, links `.nl`,
-  breadcrumbs, email de contacto, "← Volver" en posts.
-- `responsive.spec.ts` → `KNOWN_OVERFLOW`: tabla del post "kanban-vs-scrum" a ≤ 359px.
+- `touch-targets.spec.ts` → `KNOWN` (selector + motivo).
+- `responsive.spec.ts` → `KNOWN_OVERFLOW` (página + ancho máximo afectado + motivo).
+
+Hoy ambas listas están **vacías**: toda la deuda detectada al crear la suite ya se corrigió.
 
 ## Lighthouse CI
 

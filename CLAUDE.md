@@ -57,9 +57,10 @@ docs/           design-system, animations, testing, project-context
 5. **Animar solo transform/opacity** en lo que depende del scroll.
 6. **`:hover` propios dentro de `@media (hover: hover)`**; efectos de puntero solo con `finePointer`.
 7. **Scroll interno** con `data-lenis-prevent` + `overscroll-behavior: contain`.
-8. **Targets táctiles ≥ 44×44** en móvil.
+8. **Targets táctiles ≥ 44×44** en móvil: agrandar con `@media (pointer: coarse)` o padding + margen negativo, sin cambiar el layout con mouse.
 9. Tests contra el build (`preview`), nunca contra el dev server. `pnpm test:e2e` en verde antes de un PR.
 10. Sin secretos en el repo ni en docs (`.env*` está ignorado).
+11. **Contraste AA (4.5:1)** en todo texto, incluidos los mocks del producto; texto terciario con `fg-3`, nunca más oscuro.
 
 ## Docs
 

@@ -38,7 +38,7 @@ Media queries propias en componentes:
 | `--color-line-strong` | `rgba(255,255,255,.14)` | Bordes de botones ghost, paneles |
 | `--color-fg` | `#f4f3f8` | Texto principal |
 | `--color-fg-2` | `#a3a2b3` | Texto secundario, `.lead` |
-| `--color-fg-3` | `#6b6a7d` | Texto terciario, metadatos |
+| `--color-fg-3` | `#858496` | Texto terciario, metadatos. Valor mínimo que pasa 4.5:1 (AA) sobre todos los fondos (`base` 5.37:1, `raise` 4.63:1): no oscurecerlo |
 | `--color-accent` | `#6e5cf5` | Acento principal (CTA, foco) |
 | `--color-accent-2` | `#9b8bff` | Eyebrows, íconos, gradientes |
 | `--color-accent-3` | `#c4baff` | Íconos sobre fondo de acento, links de prosa |
