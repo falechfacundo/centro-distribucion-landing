@@ -14,18 +14,18 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const meta = {
   es: {
-    title: 'FlowBoard — Gestión de proyectos con Kanban, sprints y OKRs',
-    description: 'Tableros Kanban, sprints, timeline, OKRs y time tracking en una sola herramienta. FlowBoard organiza proyectos, equipos y progreso sin fricción. Empezá gratis.',
-    desc: 'Software de gestión de proyectos con tableros Kanban, sprints, timeline, OKRs, time tracking e integración con Git.',
+    title: 'Centro Distribución — Inventario y operaciones de depósito',
+    description: 'Conectá catálogo, inventario y tareas de depósito en una plataforma para operaciones de abastecimiento y distribución.',
+    desc: 'Plataforma modular para inventario, depósitos y operaciones de abastecimiento y distribución.',
   },
   en: {
-    title: 'FlowBoard — Project management with Kanban, sprints and OKRs',
-    description: 'Kanban boards, sprints, timeline, OKRs and time tracking in one tool. FlowBoard organizes projects, teams and progress without friction. Start for free.',
-    desc: 'Project management software with Kanban boards, sprints, timeline, OKRs, time tracking and Git integration.',
+    title: 'Centro Distribución — Inventory and warehouse operations',
+    description: 'Connect catalog, inventory and warehouse tasks in a platform for supply and distribution operations.',
+    desc: 'A modular platform for inventory, warehouses, supply and distribution operations.',
   },
 }[lang];
 const ld = [
-  { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: SITE_NAME, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: meta.desc, url: APP_URL, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+  { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: SITE_NAME, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: meta.desc, ...(APP_URL ? { url: APP_URL } : {}) },
   { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE_NAME, url: new URL(lang === 'es' ? '/' : '/en/', Astro.site).href, inLanguage: lang },
 ];
 ---
@@ -38,3 +38,4 @@ const ld = [
   <Details lang={lang} />
   <CTA lang={lang} />
 </Layout>
+

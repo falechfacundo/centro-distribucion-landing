@@ -2,71 +2,44 @@
 
 ## Producto
 
-**FlowBoard** es un software de gestión de proyectos: tableros Kanban, sprints, timeline, OKRs, time tracking,
-integración con Git y tickets generados con IA. Este repo es **solo la landing de marketing**. El producto vive en otro
-repo (`kanban-nextjs`) y se deploya en `PUBLIC_APP_URL`.
+**Centro Distribución** es una plataforma SaaS B2B para administrar operaciones de almacenamiento, distribución, abastecimiento y comercialización. La referencia funcional está en el repositorio padre: `Enterprise Supply Chain & Distribution OS.md`; el alcance técnico resumido está en `docs/architecture.md` del repositorio padre.
 
-- **Público**: equipos que organizan proyectos y trabajo ("une proyectos, equipos y progreso en un solo lugar",
-  `src/i18n/home.ts`). No hay más segmentación definida en el código.
-- **Modelo**: plan Gratis ($0) y plan Equipos "Próximamente". El producto todavía **no cobra** (README).
-- **Idiomas**: español (default, sin prefijo: `/`) e inglés (`/en/`).
+La visión cubre catálogo, inventario trazable, compras y proveedores, WMS, TMS, sucursales, planificación, automatización, analítica y operación multiempresa. El monorepo aclara que las pantallas operativas se habilitan a medida que los módulos quedan listos; por eso el marketing diferencia capacidades implementadas, arquitectura prevista y roadmap.
 
-## Páginas
+## Estado de esta landing
 
-Registro de rutas en `src/i18n/routes.ts` (clave → ruta por idioma). 41 páginas en el build:
+Se reutilizó la base Astro heredada para conservar dependencias, estructura multipágina e i18n. El contenido ES/EN ahora habla de Centro Distribución y de sus capacidades logísticas. Las rutas de producto apuntan a catálogo, inventario, depósitos, proveedores, trazabilidad, recepción y organizaciones. Los ejemplos de interfaz están marcados como ilustrativos.
 
-| Tipo | Rutas ES (EN equivalente bajo `/en/`) | Vista |
-|---|---|---|
-| Home | `/` | `src/views/Home.astro`: Hero, Marquee, Showcase, Bento, Flow, Details, CTA |
-| Funciones (7) | `/funciones/{tablero-kanban,sprints,timeline,okrs,time-tracking,integracion-git,tickets-con-ia}/` | `FeaturePage.astro` |
-| Precios | `/precios/` | `PricingPage.astro` |
-| Comparativas (4) | `/comparar/{jira,clickup,linear,trello}/` | `ComparePage.astro` |
-| Legal (2) | `/legal/{terminos,privacidad}/` | `LegalPage.astro` |
-| Contacto | `/contacto/` | `ContactPage.astro` (muestra un `mailto:`, sin formulario) |
-| Changelog | `/novedades/` | `ChangelogPage.astro` |
-| Blog | `/blog/` y `/blog/<slug>/` | `BlogIndex.astro`, `BlogPost.astro` |
-| 404 | `/404.html` | `noindex` |
+La identidad visual usa fondos claros, texto grafito verdoso, verde petróleo y acentos menta, con una marca geométrica de tres niveles inspirada en estanterías. La composición principal ya fue rediseñada para dar a la landing una jerarquía editorial propia; quedan pendientes la revisión visual y los datos comerciales definitivos.
 
-Las páginas del registro se generan desde `src/pages/[...slug].astro`; home y blog tienen rutas propias.
+- Español por defecto en `/`; inglés en `/en/`.
+- Rutas localizadas en `src/i18n/routes.ts`.
+- Copy por idioma en `src/i18n/`; blog en `src/content/blog/{es,en}/`.
+- El contacto, los planes, la política legal y la disponibilidad comercial requieren datos definitivos del equipo.
 
-## Integraciones
+## Arquitectura conservada
 
-| Integración | Estado |
+| Área | Implementación |
 |---|---|
-| Analytics | No definido |
-| Formularios | No definido (contacto por `mailto:`) |
-| CMS | No definido. El blog usa Content Collections de Astro: Markdown en `src/content/blog/{es,en}/`, unidos por `translationKey` |
-| SEO | `@astrojs/sitemap` (con alternates i18n), `robots.txt` generado (`src/pages/robots.txt.ts`), JSON-LD (`JsonLd.astro`) |
-| Hosting | Vercel (proyecto linkeado en `.vercel/`); cualquier host estático sirve |
+| Framework | Astro estático con Tailwind CSS v4 |
+| Animación | GSAP (ScrollTrigger, Flip) y Lenis en `src/scripts/motion.ts` |
+| i18n | Registro propio de rutas ES/EN y contenido localizado |
+| Blog | Markdown con Content Collections y `translationKey` |
+| SEO | Sitemap con alternates, robots.txt y JSON-LD |
+| Iconos | `scripts/sync-icons.mjs` copia los SVG usados |
+| Gestor de paquetes | pnpm |
 
-## Variables de entorno
+## Pendientes para publicar
 
-Todas opcionales: si faltan, se usa el default de `src/config.ts` / `astro.config.mjs`.
+- Confirmar capacidades disponibles y estado comercial por módulo.
+- Definir titular legal, domicilio y canal de contacto; reemplazar los textos legales preliminares.
+- Configurar `PUBLIC_SITE_URL`, `PUBLIC_APP_URL` y `PUBLIC_CONTACT_EMAIL`.
+- Crear un remote nuevo de GitHub y reemplazar el vínculo heredado de Vercel por el proyecto correcto.
+- Revisar rutas nuevas y configurar redirecciones para URLs heredadas si corresponden.
 
-| Variable | Uso |
-|---|---|
-| `PUBLIC_SITE_URL` | Dominio de la landing (canonical, sitemap, OG) |
-| `PUBLIC_APP_URL` | URL del producto; los CTA van a `/register` y `/login` |
-| `PUBLIC_CONTACT_EMAIL` | Email mostrado en `/contacto` |
+## Orden acordado
 
-`.env.local` lo genera el CLI de Vercel (`VERCEL_OIDC_TOKEN`); no lo usa el build.
-
-## Decisiones técnicas
-
-| Decisión | Por qué |
-|---|---|
-| Astro estático (`build.format: 'directory'`, `trailingSlash: 'always'`) | Landing de contenido: HTML puro, sin servidor, URLs canónicas consistentes |
-| i18n con registro propio de rutas (`routes.ts`) en vez de duplicar páginas | Slugs traducidos por idioma (`/precios/` ↔ `/en/pricing/`) y hreflang automático |
-| Tailwind v4 configurado en CSS (`@theme`) | Tokens del design system junto a los estilos globales; sin archivo de config |
-| Un único `motion.ts` global (GSAP + Lenis) | Sitio multipágina sin islands interactivas; una sola inicialización por carga |
-| Lenis solo para rueda, touch nativo | Evita conflictos con el scroll del sistema en móvil |
-| Clase `js-motion` puesta en `<head>` + fallback de 4s | Ocultar estados iniciales sin flash, sin dejar la página en blanco si el JS falla |
-| `scripts/sync-icons.mjs` | Copia solo los íconos de lucide que se usan (evita procesar ~2000 SVG) |
-| pnpm | Gestor del repo (`packageManager: pnpm@12.4.2`) |
-| Playwright contra el build (`build && preview`), nunca el dev server | Probar lo mismo que se deploya |
-
-## Pendientes conocidos
-
-- Sin dominio propio (default `https://flowboard-landing.vercel.app`).
-- Textos legales: documento base, falta revisión legal.
-- Deuda de UI registrada en los tests (`test.fail`): ver `docs/testing.md` → "Deuda conocida".
+1. Adaptar contenido y metadatos al producto. **Completado.**
+2. Definir y aplicar identidad de marca. **Aplicada como dirección inicial; pendiente confirmar si el equipo tiene una guía existente.**
+3. Rediseñar la estructura visual de la landing. **Aplicada en hero, navegación, capacidades, recorrido de producto y CTA; falta revisión visual integral.**
+4. Preparar GitHub y Vercel con los datos de dominio, acceso y publicación confirmados. **Pendiente.**

@@ -6,7 +6,7 @@
 .prose-fb ul, .prose-fb ol { margin: 0 0 1.2rem; padding-left: 1.3rem; display: grid; gap: .5rem; }
 .prose-fb ul { list-style: disc; } .prose-fb ol { list-style: decimal; }
 .prose-fb li::marker { color: var(--color-accent-2); }
-.prose-fb a { color: var(--color-accent-3); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(196, 186, 255, .4); }
+.prose-fb a { color: var(--color-accent-3); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(166, 243, 223, .4); }
 .prose-fb a:hover { text-decoration-color: var(--color-accent-3); }
 .prose-fb strong { color: var(--color-fg); font-weight: 600; }
 .prose-fb blockquote { margin: 1.6rem 0; padding: .4rem 0 .4rem 1.3rem; border-left: 2px solid var(--color-accent-2); color: var(--color-fg); }

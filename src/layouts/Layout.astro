@@ -44,7 +44,7 @@ const ld = [org, ...(crumbs ? [crumbs] : []), ...jsonLd];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0b0b0e" />
+    <meta name="theme-color" content="#f2f5f1" />
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
     <link rel="canonical" href={canonical} />
     {alts.es && <link rel="alternate" hreflang="es" href={abs(alts.es)} />}
@@ -86,3 +86,4 @@ const ld = [org, ...(crumbs ? [crumbs] : []), ...jsonLd];
     <script>import '../scripts/motion.ts';</script>
   </body>
 </html>
+

@@ -36,11 +36,11 @@ const steps = c.steps;
 <style is:global>
   .flow { position: relative; }
   .flow-rail { position: absolute; left: 0; right: 0; top: 32px; height: 2px; background: rgba(255,255,255,.08); border-radius: 2px; }
-  .flow-rail i { position: absolute; inset: 0; transform-origin: 0 50%; transform: scaleX(var(--p, 0)); background: linear-gradient(90deg, #6e5cf5, #c4baff); box-shadow: 0 0 16px rgba(155,139,255,.9); border-radius: 2px; }
+  .flow-rail i { position: absolute; inset: 0; transform-origin: 0 50%; transform: scaleX(var(--p, 0)); background: linear-gradient(90deg, #0f9f8e, #a6f3df); box-shadow: 0 0 16px rgba(84,214,183,.9); border-radius: 2px; }
   .flow-grid { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
   .flow-item { padding-right: 1rem; }
   .flow-node { position: relative; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 20px; margin-bottom: 1.6rem; color: var(--color-fg-3); background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line-strong); transition: all .6s var(--ease-soft); }
-  .flow-item.on .flow-node { color: #fff; background: linear-gradient(135deg, #7c6bff, #5b48e6); box-shadow: 0 12px 34px -8px rgba(110,92,245,.9), inset 0 1px 0 rgba(255,255,255,.35); transform: translateY(-4px); }
+  .flow-item.on .flow-node { color: #fff; background: linear-gradient(135deg, #35bba4, #087666); box-shadow: 0 12px 34px -8px rgba(15,159,142,.9), inset 0 1px 0 rgba(255,255,255,.35); transform: translateY(-4px); }
   .flow-num { position: absolute; top: -9px; right: -9px; padding: 1px 6px; border-radius: 99px; background: var(--color-base); box-shadow: 0 0 0 1px var(--color-line-strong); font-family: var(--font-mono); font-size: 10px; color: var(--color-fg-3); }
   .flow-item h3 { font-size: 1.3rem; font-weight: 600; letter-spacing: -.03em; color: var(--color-fg-3); transition: color .6s; }
   .flow-item.on h3 { color: var(--color-fg); }
@@ -55,3 +55,4 @@ const steps = c.steps;
     .flow-item p { margin-top: .3rem; max-width: none; }
   }
 </style>
+

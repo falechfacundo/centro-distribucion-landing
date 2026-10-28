@@ -7,7 +7,7 @@ import CtaBand from '../components/CtaBand.astro';
 import { features } from '../i18n/features';
 import { ui, featureNav } from '../i18n/ui';
 import { url, featureKeys, type FeatureKey, type Lang } from '../i18n/routes';
-import { REGISTER_URL, APP_URL, SITE_NAME } from '../config';
+import { APP_URL, SITE_NAME } from '../config';
 
 interface Props { lang: Lang; fkey: FeatureKey }
 const { lang, fkey } = Astro.props;
@@ -18,11 +18,11 @@ const related = featureKeys.filter((k) => k !== fkey).slice(0, 3);
 const stepsTitle = lang === 'es' ? 'Cómo funciona' : 'How it works';
 const capsTitle = lang === 'es' ? 'Lo que podés hacer' : 'What you can do';
 const crumbs = [{ name: t.breadcrumbHome, href: url('home', lang) }, { name: n.product, href: url('home', lang) + '#funciones' }, { name: c.eyebrow, href: url(fkey, lang) }];
-const ld = [{ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: `${SITE_NAME} — ${c.eyebrow}`, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: c.metaDesc, url: APP_URL, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } }];
+const ld = [{ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: `${SITE_NAME} — ${c.eyebrow}`, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: c.metaDesc, ...(APP_URL ? { url: APP_URL } : {}) }];
 ---
 <Layout title={c.metaTitle} description={c.metaDesc} lang={lang} routeKey={fkey} breadcrumbs={crumbs} jsonLd={ld}>
   <InnerHero eyebrow={c.eyebrow} title={c.h1} lead={c.lead} crumbs={crumbs} icon={featureNav[fkey].icon}>
-    <a href={REGISTER_URL} data-magnetic class="btn btn-primary btn-lg">{t.startFree} <Icon name="arrow-right" class="arrow" /></a>
+    <a href={url('contact', lang)} data-magnetic class="btn btn-primary btn-lg">{t.startFree} <Icon name="arrow-right" class="arrow" /></a>
     <a href={url('pricing', lang)} data-magnetic class="btn btn-ghost btn-lg">{n.pricing}</a>
   </InnerHero>
 
@@ -76,18 +76,19 @@ const ld = [{ '@context': 'https://schema.org', '@type': 'SoftwareApplication', 
     </div>
   </section>
 
-  <CtaBand title={c.h1} primary={t.createAccount} secondaryHref={url('contact', lang)} secondary={ui[lang].footer.contact} />
+  <CtaBand title={c.h1} primary={t.createAccount} secondaryHref={url('contact', lang)} secondary={ui[lang].footer.contact} lang={lang} />
 </Layout>
 <style is:global>
-  .fcap { padding: 1.8rem; border-radius: 24px; background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)); box-shadow: inset 0 0 0 1px var(--color-line), inset 0 1px 0 rgba(255,255,255,.06); }
-  .fcap-ic { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; margin-bottom: 1.4rem; color: var(--color-accent-3); background: rgba(110,92,245,.14); box-shadow: inset 0 0 0 1px rgba(110,92,245,.3); }
+  .fcap { padding: 1.8rem; background: var(--color-card); box-shadow: inset 0 0 0 1px var(--color-line-strong); }
+  .fcap-ic { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; margin-bottom: 1.4rem; color: var(--color-accent-3); background: rgba(15,159,142,.14); box-shadow: inset 0 0 0 1px rgba(15,159,142,.3); }
   .fcap h2, .fcap h3 { font-size: 1.15rem; font-weight: 600; letter-spacing: -.025em; }
   .fcap p { margin-top: .5rem; color: var(--color-fg-2); font-size: .94rem; line-height: 1.6; }
-  .fstep { position: relative; padding: 2rem 1.8rem; border-radius: 24px; box-shadow: inset 0 0 0 1px var(--color-line); background: rgba(255,255,255,.015); }
+  .fstep { position: relative; padding: 2rem 1.8rem; box-shadow: inset 0 0 0 1px var(--color-line-strong); background: var(--color-card); }
   .fstep-n { display: inline-block; margin-bottom: 1.2rem; font-family: var(--font-mono); font-size: .8rem; color: var(--color-accent-2); }
   .fstep h3 { font-size: 1.3rem; font-weight: 600; letter-spacing: -.03em; } .fstep p { margin-top: .5rem; color: var(--color-fg-2); line-height: 1.6; }
-  .rel { display: flex; flex-direction: column; gap: 4px; padding: 1.5rem; border-radius: 22px; height: 100%; box-shadow: inset 0 0 0 1px var(--color-line); background: rgba(255,255,255,.02); transition: transform .5s var(--ease-soft); }
+  .rel { display: flex; flex-direction: column; gap: 4px; padding: 1.5rem; height: 100%; box-shadow: inset 0 0 0 1px var(--color-line-strong); background: var(--color-card); transition: transform .5s var(--ease-soft); }
   .rel:hover { transform: translateY(-4px); }
   .rel .fcap-ic { margin-bottom: 1rem; } .rel b { font-size: 1.05rem; font-weight: 600; letter-spacing: -.02em; } .rel small { color: var(--color-fg-3); font-size: .88rem; }
-  .rel-arrow { position: absolute !important; right: 1.3rem; top: 1.5rem; color: var(--color-fg-3); transition: transform .4s var(--ease-soft), color .3s; } .rel:hover .rel-arrow { transform: translateX(4px); color: #fff; }
+  .rel-arrow { position: absolute !important; right: 1.3rem; top: 1.5rem; color: var(--color-fg-3); transition: transform .4s var(--ease-soft), color .3s; } .rel:hover .rel-arrow { transform: translateX(4px); color: var(--color-accent-2); }
 </style>
+

@@ -23,10 +23,11 @@ const crumbs = [{ name: t.breadcrumbHome, href: url('home', lang) }, { name: c.m
         ))}
       </ul>
       <div class="cta noise relative mt-6 overflow-hidden rounded-[2rem] px-6 py-14 text-center" data-reveal>
-        <p class="text-fg-2">{c.email}</p>
-        <a href={`mailto:${CONTACT_EMAIL}`} class="mt-2 -mb-1 inline-block py-1 text-[clamp(1.5rem,4vw,2.6rem)] font-semibold tracking-tight text-white underline decoration-accent-2/50 underline-offset-8 transition-colors hover:decoration-accent-2">{CONTACT_EMAIL}</a>
+        {CONTACT_EMAIL ? <><p class="text-fg-2">{c.email}</p><a href={`mailto:${CONTACT_EMAIL}`} class="mt-2 -mb-1 inline-block py-1 text-[clamp(1.5rem,4vw,2.6rem)] font-semibold tracking-tight text-accent underline decoration-accent-2/50 underline-offset-8 transition-colors hover:decoration-accent-2">{CONTACT_EMAIL}</a></> : <p class="text-fg-2">{lang === 'es' ? 'El canal de contacto se habilitará próximamente.' : 'The contact channel will be available soon.'}</p>}
         <p class="mt-5 text-[.85rem] text-fg-3">{c.hint}</p>
       </div>
     </div>
   </section>
 </Layout>
+
+

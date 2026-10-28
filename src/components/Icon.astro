@@ -7,3 +7,4 @@ if (!raw) throw new Error(`Icon "${name}" not found (run npm run icons)`);
 const inner = raw.replace(/<svg[^>]*>/, '').replace('</svg>', '').replace(/<!--[\s\S]*?-->/g, '');
 ---
 <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={stroke} stroke-linecap="round" stroke-linejoin="round" class={cls} aria-hidden="true" set:html={inner} />
+

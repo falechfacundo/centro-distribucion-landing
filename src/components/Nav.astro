@@ -1,9 +1,9 @@
 ---
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
-import { REGISTER_URL, LOGIN_URL } from '../config';
+import { APP_URL } from '../config';
 import { url, featureKeys, compareKeys, type Lang } from '../i18n/routes';
-import { ui, featureNav, competitors } from '../i18n/ui';
+import { ui, featureNav, solutionNav } from '../i18n/ui';
 
 interface Props { lang: Lang; switchHref: string }
 const { lang, switchHref } = Astro.props;
@@ -12,9 +12,9 @@ const homeHref = url('home', lang);
 ---
 <div id="progress" class="fixed left-0 top-0 z-[60] h-[2px] w-full origin-left scale-x-0 bg-gradient-to-r from-accent via-accent-2 to-accent-3"></div>
 <header id="nav" class="fixed inset-x-0 top-0 z-50">
-  <div class="wrap-wide pt-4 max-sm:!px-3">
-    <nav id="nav-bar" class="mx-auto flex h-14 max-w-[1120px] items-center justify-between gap-3 rounded-full border border-transparent pl-4 pr-1.5 transition-all duration-500 sm:pl-5 sm:pr-2" aria-label="Principal">
-      <a href={homeHref} aria-label={t.home} class="inline-flex min-h-11 shrink-0 items-center text-white"><Logo size={22} /></a>
+  <div class="nav-shell">
+    <nav id="nav-bar" class="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between gap-3 border-b border-line px-[var(--gutter)] transition-all duration-300" aria-label="Principal">
+      <a href={homeHref} aria-label={t.home} class="inline-flex min-h-11 shrink-0 items-center text-fg"><Logo size={22} /></a>
 
       <ul class="hidden items-center gap-0.5 lg:flex">
         <li class="dd">
@@ -38,7 +38,7 @@ const homeHref = url('home', lang);
           <div class="dd-panel">
             <ul>
               {compareKeys.map((k) => (
-                <li><a href={url(k, lang)} class="dd-item dd-simple"><span><b>FlowBoard vs {competitors[k.replace('cmp-', '') as keyof typeof competitors]}</b></span></a></li>
+                <li><a href={url(k, lang)} class="dd-item dd-simple"><span><b>{solutionNav[k][lang]}</b></span></a></li>
               ))}
             </ul>
           </div>
@@ -49,9 +49,9 @@ const homeHref = url('home', lang);
 
       <div class="flex shrink-0 items-center gap-1">
         <a href={switchHref} hreflang={lang === 'es' ? 'en' : 'es'} class="nl hidden sm:inline-flex !px-3 font-mono text-[0.72rem] uppercase tracking-wider" aria-label={ui[lang].footer.lang}>{lang === 'es' ? 'EN' : 'ES'}</a>
-        <a href={LOGIN_URL} class="nl hidden sm:inline-flex">{t.login}</a>
-        <a href={REGISTER_URL} class="btn btn-primary btn-sm max-[359px]:!hidden max-sm:!px-3.5">{t.cta}</a>
-        <button type="button" id="nav-toggle" class="grid h-11 w-11 place-items-center rounded-full text-white sm:ml-1 lg:hidden" aria-label={t.menu} aria-expanded="false" aria-controls="mobile-menu">
+        {APP_URL && <a href={`${APP_URL}/sign-in`} class="nl hidden sm:inline-flex">{t.login}</a>}
+        <a href={url('contact', lang)} class="btn btn-primary btn-sm max-[359px]:!hidden max-sm:!px-3.5">{t.cta}</a>
+        <button type="button" id="nav-toggle" class="grid h-11 w-11 place-items-center rounded-full text-fg sm:ml-1 lg:hidden" aria-label={t.menu} aria-expanded="false" aria-controls="mobile-menu">
           <Icon name="menu" size={22} class="i-open" /><Icon name="x" size={22} class="i-close" />
         </button>
       </div>
@@ -70,7 +70,7 @@ const homeHref = url('home', lang);
       <p class="mm-h">{t.compare}</p>
       <ul class="mm-list">
         {compareKeys.map((k) => (
-          <li><a href={url(k, lang)}><Icon name="arrow-right" size={16} />FlowBoard vs {competitors[k.replace('cmp-', '') as keyof typeof competitors]}</a></li>
+          <li><a href={url(k, lang)}><Icon name={solutionNav[k].icon} size={16} />{solutionNav[k][lang]}</a></li>
         ))}
       </ul>
       <ul class="mm-list mm-main">
@@ -78,37 +78,35 @@ const homeHref = url('home', lang);
         <li><a href={url('blog', lang)}>{t.blog}</a></li>
         <li><a href={url('changelog', lang)}>{t.changelog}</a></li>
         <li><a href={switchHref} hreflang={lang === 'es' ? 'en' : 'es'}>{ui[lang].footer.lang}</a></li>
-        <li><a href={LOGIN_URL}>{t.login}</a></li>
+        {APP_URL && <li><a href={`${APP_URL}/sign-in`}>{t.login}</a></li>}
       </ul>
-      <a href={REGISTER_URL} class="btn btn-primary btn-lg mt-8 w-full">{t.cta}</a>
+      <a href={url('contact', lang)} class="btn btn-primary btn-lg mt-8 w-full">{t.cta}</a>
     </div>
 </div>
 
 <style is:global>
-  #nav.is-stuck #nav-bar, #nav.menu-open #nav-bar {
-    background: rgba(14, 14, 18, 0.72);
-    border-color: var(--color-line);
-    backdrop-filter: blur(20px) saturate(1.4);
-    box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  }
+  .nav-shell { background:rgba(242,245,241,.9); backdrop-filter:blur(16px); }
+  #nav-bar { border-color:var(--color-line-strong); }
+  #nav.is-stuck .nav-shell, #nav.menu-open .nav-shell { background:rgba(255,255,255,.97); }
+  #nav.is-stuck #nav-bar { height:64px; }
   @layer components { .nl { display: inline-flex; align-items: center; gap: 4px; padding: 0.5rem 0.9rem; border-radius: 999px; font-size: 0.9rem; color: var(--color-fg-2); transition: color .25s, background .25s; } }
-  .nl:hover, .dd:focus-within > .nl, .dd:hover > .nl { color: #fff; }
+  .nl:hover, .dd:focus-within > .nl, .dd:hover > .nl { color: var(--color-fg); }
   .chev { transition: transform .3s var(--ease-soft); } .dd:hover .chev, .dd:focus-within .chev { transform: rotate(180deg); }
   .dd { position: relative; }
-  .dd-panel { position: absolute; left: 50%; top: 100%; z-index: 10; min-width: 240px; padding: 8px; margin-top: 10px; border-radius: 20px; background: rgba(17,17,21,.96); backdrop-filter: blur(24px); box-shadow: 0 30px 80px -20px rgba(0,0,0,.9), inset 0 0 0 1px var(--color-line-strong); opacity: 0; visibility: hidden; transform: translate(-50%, 8px); transition: opacity .25s, transform .35s var(--ease-soft), visibility .25s; }
+  .dd-panel { position: absolute; left: 50%; top: 100%; z-index: 10; min-width: 240px; padding: 8px; margin-top: 10px; border-radius: 20px; background: rgba(255,255,255,.97); backdrop-filter: blur(24px); box-shadow: 0 24px 55px -30px rgba(19,48,39,.28), inset 0 0 0 1px var(--color-line-strong); opacity: 0; visibility: hidden; transform: translate(-50%, 8px); transition: opacity .25s, transform .35s var(--ease-soft), visibility .25s; }
   .dd::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 12px; }
   .dd:hover .dd-panel, .dd:focus-within .dd-panel { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
   .dd-wide { width: 560px; }
   .dd-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 13px; transition: background .2s; }
-  .dd-item:hover { background: rgba(255,255,255,.06); }
+  .dd-item:hover { background: rgba(22,115,95,.07); }
   .dd-item b { display: block; font-size: .9rem; font-weight: 550; color: var(--color-fg); letter-spacing: -.01em; } .dd-item small { display: block; margin-top: 2px; font-size: .78rem; color: var(--color-fg-3); }
   .dd-simple { align-items: center; padding: 10px 14px; white-space: nowrap; }
-  .dd-ic { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: var(--color-accent-3); background: rgba(110,92,245,.14); box-shadow: inset 0 0 0 1px rgba(110,92,245,.28); }
+  .dd-ic { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: var(--color-accent-3); background: rgba(15,159,142,.14); box-shadow: inset 0 0 0 1px rgba(15,159,142,.28); }
 
   /* targets táctiles de 44px solo en pantallas táctiles: con mouse el nav queda igual */
   @media (pointer: coarse) { #nav-bar .btn-sm, #nav-bar .nl { min-height: 2.75rem; } #nav-bar .nl { min-width: 2.75rem; justify-content: center; } #nav-bar .btn-sm { height: 2.75rem; } }
   #nav-toggle .i-close { display: none; } #nav.menu-open #nav-toggle .i-close { display: block; } #nav.menu-open #nav-toggle .i-open { display: none; }
-  .mm { position: fixed; inset: 0; z-index: 40; overflow-y: auto; overscroll-behavior: contain; background: rgba(9,9,12,.97); }
+  .mm { position: fixed; inset: 0; z-index: 40; overflow-y: auto; overscroll-behavior: contain; background: rgba(242,245,241,.98); }
   .mm[hidden] { display: none; }
   .mm-h { margin: 1.4rem 0 .5rem; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--color-fg-3); }
   .mm-list { list-style: none; margin: 0; padding: 0; display: grid; }
@@ -138,3 +136,4 @@ const homeHref = url('home', lang);
   addEventListener('keydown', (e) => e.key === 'Escape' && set(false));
   matchMedia('(min-width: 1024px)').addEventListener('change', (e) => e.matches && set(false));
 </script>
+

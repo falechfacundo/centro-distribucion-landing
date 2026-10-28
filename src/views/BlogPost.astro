@@ -28,8 +28,10 @@ const ld = [{
   <section class="section !pt-4">
     <div class="wrap max-w-[760px]">
       <article class="prose-fb"><Content /></article>
-      <a href={url('blog', lang)} class="-mb-[11px] mt-[37px] inline-flex items-center py-[11px] gap-2 text-[.92rem] text-fg-2 transition-colors hover:text-white">← {t.back}</a>
+      <a href={url('blog', lang)} class="-mb-[11px] mt-[37px] inline-flex items-center py-[11px] gap-2 text-[.92rem] text-fg-2 transition-colors hover:text-accent">← {t.back}</a>
     </div>
   </section>
-  <CtaBand title={ui[lang].nav.cta} primary={t.createAccount} />
+  <CtaBand title={ui[lang].nav.cta} primary={t.createAccount} lang={lang} />
 </Layout>
+
+

@@ -369,3 +369,4 @@ if (timer) {
 })();
 
 addEventListener('load', () => ScrollTrigger.refresh());
+

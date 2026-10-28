@@ -1,6 +1,6 @@
-# FlowBoard · Landing
+# Centro Distribución · Landing
 
-Landing de marketing estática (ES/EN) del producto FlowBoard. El producto vive en otro repo (`kanban-nextjs`).
+Landing estática (ES/EN) de Centro Distribución. El contenido comercial se localiza en `src/i18n/`; las capacidades que siguen en diseño o roadmap deben identificarse como tales.
 
 ## Stack
 
@@ -68,3 +68,5 @@ docs/           design-system, animations, testing, project-context
 - [docs/animations.md](docs/animations.md): inicialización de GSAP/Lenis, convenciones, animaciones por sección
 - [docs/testing.md](docs/testing.md): suites, snapshots, Lighthouse, deuda conocida, checklist en dispositivo real
 - [docs/project-context.md](docs/project-context.md): producto, páginas, integraciones, env vars, decisiones técnicas
+
+

@@ -1,15 +1,17 @@
 ---
 interface Props { size?: number; word?: boolean; class?: string; animate?: boolean }
 const { size = 28, word = true, class: cls = '', animate = false } = Astro.props;
-const T = 'M240,185 V100 C240,42 290,0 350,0 H597 Q605,0 605,8 V105 C605,150 570,185 510,185 Z';
-const M = 'M240,185 H140 C55,185 0,250 0,340 V364 Q0,372 8,372 H105 C190,372 240,300 240,185 Z';
+const T = 'M4 4h20a4 4 0 0 1 4 4v4H4z';
+const M = 'M4 14h24v4H4z';
+const B = 'M4 22h24v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z';
 ---
 <span class={`inline-flex items-center gap-[0.55em] ${cls}`} style={`font-size:${size}px`}>
-  <svg viewBox="0 0 605 550" style="height:1em;width:1.1em;overflow:visible" fill="currentColor" aria-hidden="true" class={animate ? 'logo-anim' : ''}>
+  <svg viewBox="0 0 32 32" style="height:1em;width:1em;overflow:visible" fill="currentColor" aria-hidden="true" class={animate ? 'logo-anim' : ''}>
     <path class="lm-a" d={T} />
     <path class="lm-b" d={M} />
-    <path class="lm-c" transform="translate(0 365)" d={T} />
+    <path class="lm-c" d={B} />
   </svg>
-  {word && <span class="font-semibold tracking-[-0.045em] leading-none" style="font-size:.86em">FlowBoard</span>}
-  {!word && <span class="sr-only">FlowBoard</span>}
+  {word && <span class="font-semibold tracking-[-0.045em] leading-none" style="font-size:.72em">Centro Distribución</span>}
+  {!word && <span class="sr-only">Centro Distribución</span>}
 </span>
+

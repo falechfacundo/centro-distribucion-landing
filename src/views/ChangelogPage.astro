@@ -17,7 +17,7 @@ const fmt = new Intl.DateTimeFormat(lang === 'es' ? 'es-AR' : 'en-US', { year: '
   <InnerHero eyebrow={ui[lang].nav.changelog} title={c.h1} lead={c.lead} />
   <section class="section !pt-4">
     <div class="wrap max-w-[860px]">
-      <ol class="cl">
+      {c.entries.length ? <ol class="cl">
         {c.entries.map((e) => (
           <li class="cl-item" data-reveal>
             <time datetime={e.date}>{fmt.format(new Date(e.date))}</time>
@@ -27,10 +27,10 @@ const fmt = new Intl.DateTimeFormat(lang === 'es' ? 'es-AR' : 'en-US', { year: '
             </div>
           </li>
         ))}
-      </ol>
+      </ol> : <p class="max-w-[44rem] border border-line bg-white p-6 leading-relaxed text-fg-2">{lang === 'es' ? 'Las novedades se publicarán a medida que los módulos estén disponibles.' : 'Updates will be published as modules become available.'}</p>}
     </div>
   </section>
-  <CtaBand title={ui[lang].nav.cta} primary={t.createAccount} />
+  <CtaBand title={ui[lang].nav.cta} primary={t.createAccount} lang={lang} />
 </Layout>
 <style is:global>
   .cl { list-style: none; margin: 0; padding: 0 0 0 1.6rem; position: relative; display: grid; gap: 2.4rem; }
@@ -38,7 +38,9 @@ const fmt = new Intl.DateTimeFormat(lang === 'es' ? 'es-AR' : 'en-US', { year: '
   .cl-item { position: relative; display: grid; gap: .9rem; }
   .cl-item::before { content: ''; position: absolute; left: -1.6rem; top: .35rem; width: 9px; height: 9px; border-radius: 9px; background: var(--color-accent-2); box-shadow: 0 0 14px var(--color-accent-2); }
   .cl-item time { font-family: var(--font-mono); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--color-fg-3); }
-  .cl-card { padding: 1.8rem; border-radius: 24px; box-shadow: inset 0 0 0 1px var(--color-line); background: rgba(255,255,255,.02); }
+  .cl-card { padding: 1.8rem; box-shadow: inset 0 0 0 1px var(--color-line-strong); background: var(--color-card); }
   .cl-card h2 { font-size: 1.35rem; font-weight: 600; letter-spacing: -.03em; margin-bottom: 1rem; }
   .cl-card ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .55rem; color: var(--color-fg-2); line-height: 1.6; } .cl-card li::marker { color: var(--color-accent-2); }
 </style>
+
+

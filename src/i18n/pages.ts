@@ -1,211 +1,172 @@
 import type { CompareKey, Lang } from './routes';
 
-/* ---------------- Precios ---------------- */
+/* ---------------- Planes ---------------- */
 export const pricing = {
   es: {
-    metaTitle: 'Precios',
-    metaDesc: 'FlowBoard tiene un plan gratuito para empezar: Kanban, sprints, timeline, OKRs, time tracking e integración con Git. Sin tarjeta de crédito.',
-    eyebrow: 'Precios', h1: 'Empezá gratis. Crecé a tu ritmo.',
-    lead: 'Un plan gratuito para poner a tu equipo en flujo hoy mismo. Sin tarjeta de crédito.',
-    free: { name: 'Gratis', price: '$0', period: 'para empezar', desc: 'Todo lo necesario para organizar proyectos y equipos.', cta: 'Crear cuenta gratis',
-      items: ['Tableros Kanban con drag & drop', 'Vistas de lista y timeline', 'Sprints, epics y backlog', 'OKRs y portfolios', 'Time tracking y reportes', 'Integración con GitHub', 'Generación de tickets con IA', 'Subida de archivos (hasta 50 MB)', 'Invitación de miembros y roles'] },
-    teams: { name: 'Equipos', price: 'Próximamente', period: '', desc: 'Estamos definiendo planes para equipos más grandes. Contanos qué necesitás y lo tenemos en cuenta.', cta: 'Contanos qué necesitás', items: ['Todo lo del plan Gratis', 'Más capacidad y controles avanzados', 'Soporte prioritario'] },
-    faqTitle: 'Preguntas sobre precios',
+    metaTitle: 'Planes y evaluación', metaDesc: 'Conocé Centro Distribución y conversemos sobre el alcance adecuado para tu operación.',
+    eyebrow: 'Planes', h1: 'Una solución para la complejidad de tu operación.',
+    lead: 'El alcance, la implementación y las integraciones dependen de cada red de distribución. Hablemos de tu contexto antes de definir un plan.',
+    free: { name: 'Evaluación inicial', price: 'A medida', period: 'Conversación con el equipo', desc: 'Revisemos juntos los procesos, depósitos y sistemas que forman parte de tu operación.', cta: 'Solicitar una conversación', items: ['Contexto de la operación', 'Procesos y ubicaciones involucradas', 'Necesidades de catálogo e inventario', 'Sistemas e integraciones a considerar'] },
+    teams: { name: 'Implementación empresarial', price: 'A definir', period: '', desc: 'Alcance y acompañamiento por definir de acuerdo con la organización y sus requisitos.', cta: 'Consultar por una implementación', items: ['Estructura de organizaciones y depósitos', 'Módulos requeridos', 'Migración e integraciones', 'Roles, permisos y acompañamiento'] },
+    faqTitle: 'Preguntas sobre el producto',
     faq: [
-      ['¿Necesito tarjeta de crédito para empezar?', 'No. Podés registrarte y usar FlowBoard sin cargar ningún medio de pago.'],
-      ['¿Qué incluye el plan gratuito?', 'Las funciones principales del producto: tableros, vistas de lista y timeline, sprints, OKRs, portfolios, time tracking, reportes e integración con Git.'],
-      ['¿Van a cobrar en el futuro?', 'Estamos definiendo planes para equipos más grandes. Si tu equipo tiene necesidades específicas, escribinos.'],
-      ['¿Dónde están mis datos?', 'Podés leer los detalles en nuestra política de privacidad.'],
+      ['¿Cuánto cuesta la plataforma?', 'Los planes y precios todavía no están publicados. El alcance se debe conversar con el equipo.'],
+      ['¿Puedo contratar una implementación?', 'La modalidad de contratación y el proceso de implementación están pendientes de definición. Contactanos para conversar sobre tu caso.'],
+      ['¿Qué incluye el producto hoy?', 'El desarrollo avanza por módulos. Podemos confirmar alcance y disponibilidad durante una conversación con el equipo.'],
+      ['¿Cómo se gestionan los datos?', 'Consultá la política de privacidad y solicitá información sobre el entorno de implementación antes de compartir datos operativos.'],
     ],
   },
   en: {
-    metaTitle: 'Pricing',
-    metaDesc: 'FlowBoard has a free plan to get started: Kanban, sprints, timeline, OKRs, time tracking and Git integration. No credit card required.',
-    eyebrow: 'Pricing', h1: 'Start free. Grow at your pace.',
-    lead: 'A free plan to put your team in flow today. No credit card required.',
-    free: { name: 'Free', price: '$0', period: 'to get started', desc: 'Everything you need to organize projects and teams.', cta: 'Create a free account',
-      items: ['Kanban boards with drag & drop', 'List and timeline views', 'Sprints, epics and backlog', 'OKRs and portfolios', 'Time tracking and reports', 'GitHub integration', 'AI ticket generation', 'File uploads (up to 50 MB)', 'Member invitations and roles'] },
-    teams: { name: 'Teams', price: 'Coming soon', period: '', desc: 'We are defining plans for larger teams. Tell us what you need and we will take it into account.', cta: 'Tell us what you need', items: ['Everything in the Free plan', 'More capacity and advanced controls', 'Priority support'] },
-    faqTitle: 'Pricing questions',
+    metaTitle: 'Plans and evaluation', metaDesc: 'Explore Centro Distribución and discuss the right scope for your operation.',
+    eyebrow: 'Plans', h1: 'A solution for the complexity of your operation.',
+    lead: 'Scope, implementation and integrations depend on each distribution network. Let’s discuss your context before defining a plan.',
+    free: { name: 'Initial evaluation', price: 'By scope', period: 'Conversation with our team', desc: 'Let’s review the processes, warehouses and systems involved in your operation.', cta: 'Request a conversation', items: ['Operational context', 'Processes and locations involved', 'Catalog and inventory needs', 'Systems and integrations to consider'] },
+    teams: { name: 'Enterprise implementation', price: 'To be defined', period: '', desc: 'Scope and support to be defined around your organization and requirements.', cta: 'Ask about implementation', items: ['Organization and warehouse structure', 'Required modules', 'Migration and integrations', 'Roles, permissions and support'] },
+    faqTitle: 'Product questions',
     faq: [
-      ['Do I need a credit card to start?', 'No. You can sign up and use FlowBoard without adding any payment method.'],
-      ['What does the free plan include?', 'The core features of the product: boards, list and timeline views, sprints, OKRs, portfolios, time tracking, reports and Git integration.'],
-      ['Will you charge in the future?', 'We are defining plans for larger teams. If your team has specific needs, write to us.'],
-      ['Where is my data?', 'You can read the details in our privacy policy.'],
+      ['How much does the platform cost?', 'Plans and pricing have not been published yet. Scope should be discussed with the team.'],
+      ['Can I purchase an implementation?', 'Commercial terms and implementation process are still to be defined. Contact us to discuss your case.'],
+      ['What is available today?', 'Development is progressing by module. The team can confirm scope and availability in a conversation.'],
+      ['How is data handled?', 'Review the privacy policy and request information about the implementation environment before sharing operational data.'],
     ],
   },
 } as const;
 
-/* ---------------- Comparativas ---------------- */
-interface CompareCopy {
+/* ---------------- Soluciones por operación ---------------- */
+interface SolutionCopy {
   metaTitle: string; metaDesc: string; h1: string; lead: string;
   quick: { fb: string; other: string };
   chooseFb: string[]; chooseOther: string[]; faq: [string, string][];
 }
-const names = { 'cmp-jira': 'Jira', 'cmp-clickup': 'ClickUp', 'cmp-linear': 'Linear', 'cmp-trello': 'Trello' } as const;
+const names = {
+  'cmp-jira': 'Distribución mayorista', 'cmp-clickup': 'Retail multisucursal',
+  'cmp-linear': 'Operadores logísticos', 'cmp-trello': 'Fulfillment ecommerce',
+} as const;
 
-const cmpEs: Record<CompareKey, CompareCopy> = {
+const es: Record<CompareKey, SolutionCopy> = {
   'cmp-jira': {
-    metaTitle: 'FlowBoard vs Jira', metaDesc: 'Comparación entre FlowBoard y Jira: enfoque, complejidad y para qué tipo de equipo conviene cada uno. Alternativa simple a Jira.',
-    h1: 'FlowBoard vs Jira', lead: 'Jira es una plataforma muy configurable con un gran ecosistema. FlowBoard apunta a lo opuesto: dejar a tu equipo trabajando rápido, con lo esencial bien resuelto.',
-    quick: { fb: 'FlowBoard prioriza la simplicidad: tableros, sprints, timeline, OKRs y time tracking listos para usar, sin armar flujos de trabajo complejos antes de empezar.', other: 'Jira ofrece flujos de trabajo altamente personalizables, gran cantidad de integraciones y un ecosistema pensado para organizaciones grandes.' },
-    chooseFb: ['Querés empezar a trabajar hoy, sin semanas de configuración.', 'Tu equipo es chico o mediano y no necesita workflows muy personalizados.', 'Preferís tener OKRs, time tracking y reportes en la misma herramienta.', 'Valorás una interfaz liviana y rápida.'],
-    chooseOther: ['Necesitás flujos de trabajo y permisos muy granulares.', 'Tu organización ya usa el ecosistema de Atlassian.', 'Dependés de integraciones o extensiones específicas del marketplace.'],
-    faq: [['¿FlowBoard es una alternativa a Jira?', 'Para equipos que buscan una herramienta más simple con Kanban, sprints y OKRs, sí. Si necesitás la personalización profunda de Jira, quizás Jira siga siendo la mejor opción.'], ['¿Puedo migrar desde Jira?', 'FlowBoard permite importar proyectos desde JSON con vista previa antes de confirmar.']],
+    metaTitle: 'Centro Distribución para mayoristas', metaDesc: 'Una base para conectar catálogo, inventario y tareas de depósito en operaciones mayoristas.',
+    h1: 'Visibilidad para distribuir con más control.', lead: 'Conectá productos, existencias y depósitos para dar contexto a la recepción, el almacenamiento y los movimientos de mercadería.',
+    quick: { fb: 'Centro Distribución está diseñado alrededor de inventario trazable, ubicaciones y tareas operativas relacionadas.', other: 'En operaciones mayoristas, los datos suelen repartirse entre sistemas, planillas y procesos de cada depósito.' },
+    chooseFb: ['Necesitás conocer el stock por producto y ubicación.', 'Querés conservar el historial de movimientos y ajustes.', 'Tu operación incluye recepción, guardado y conteos físicos.', 'Trabajás con más de un depósito o entidad.'],
+    chooseOther: ['Acordar qué sistemas serán la fuente oficial de catálogo y compras.', 'Validar qué procesos están disponibles en la etapa actual del producto.', 'Definir integraciones y el alcance de implementación.'],
+    faq: [['¿Está pensado para distribuidores mayoristas?', 'La plataforma se orienta a operaciones de abastecimiento y distribución. El encaje depende de los procesos y la etapa del producto.'], ['¿Soporta múltiples depósitos?', 'La arquitectura contempla múltiples depósitos, zonas y ubicaciones por organización.'], ['¿Reemplaza mi sistema de compras?', 'La interoperabilidad debe evaluarse según los sistemas existentes y las integraciones disponibles.']],
   },
   'cmp-clickup': {
-    metaTitle: 'FlowBoard vs ClickUp', metaDesc: 'Comparación entre FlowBoard y ClickUp: qué ofrece cada uno y para qué equipos conviene. Una alternativa enfocada a ClickUp.',
-    h1: 'FlowBoard vs ClickUp', lead: 'ClickUp busca cubrir casi todo en una sola plataforma. FlowBoard se concentra en gestión de proyectos y la hace liviana.',
-    quick: { fb: 'FlowBoard se enfoca en proyectos, sprints, objetivos y tiempo. Menos superficie, menos ruido, más foco en mover el trabajo.', other: 'ClickUp ofrece una superficie muy amplia de funciones: tareas, documentos, vistas y más, con mucha configuración disponible.' },
-    chooseFb: ['Querés una herramienta enfocada en proyectos, sin abrumarte con opciones.', 'Priorizás velocidad y claridad sobre amplitud de funciones.', 'Buscás OKRs, sprints y time tracking integrados al tablero.'],
-    chooseOther: ['Querés concentrar documentos, tareas y otras herramientas en una sola plataforma.', 'Tu equipo disfruta configurar y personalizar mucho su espacio.'],
-    faq: [['¿FlowBoard es más simple que ClickUp?', 'FlowBoard tiene un alcance más acotado a propósito: gestión de proyectos, objetivos y tiempo, con una interfaz liviana.'], ['¿Qué vistas tiene FlowBoard?', 'Tablero Kanban, lista, timeline y sprints, además de reportes.']],
+    metaTitle: 'Centro Distribución para retail multisucursal', metaDesc: 'Organizá catálogo e inventario con contexto de depósitos y sucursales en una red de retail.',
+    h1: 'Una vista compartida para depósitos y sucursales.', lead: 'Representá productos, ubicaciones y organizaciones para coordinar la información de inventario en redes con múltiples puntos de operación.',
+    quick: { fb: 'El modelo contempla organizaciones, depósitos, sucursales, ubicaciones y registros de inventario con alcance por tenant.', other: 'Las redes de retail necesitan acordar cómo se comparte el catálogo y quién puede consultar o modificar el stock de cada sede.' },
+    chooseFb: ['Administrás varias sucursales o depósitos.', 'Necesitás definir permisos según la ubicación y el rol.', 'Querés relacionar existencias con ubicaciones específicas.', 'Buscás una base común para información de productos.'],
+    chooseOther: ['Definir políticas de reposición entre sedes.', 'Confirmar flujos de POS y ecommerce requeridos.', 'Acordar disponibilidad de tableros consolidados y analítica.'],
+    faq: [['¿El producto incluye POS?', 'El documento maestro contempla operaciones de tiendas y POS dentro de la visión del ecosistema; la disponibilidad debe confirmarse.'], ['¿Se puede administrar stock por sucursal?', 'El modelo organizacional contempla sucursales y nodos logísticos. Los flujos disponibles dependen del estado de implementación.'], ['¿Hay reposición automática?', 'La reposición automatizada está en la visión del producto y no se presenta aquí como capacidad confirmada.']],
   },
   'cmp-linear': {
-    metaTitle: 'FlowBoard vs Linear', metaDesc: 'Comparación entre FlowBoard y Linear: enfoque, tipo de equipo y funciones. Elegí la herramienta que mejor encaja con tu forma de trabajar.',
-    h1: 'FlowBoard vs Linear', lead: 'Linear es una herramienta muy enfocada en equipos de producto y software. FlowBoard suma OKRs, portfolios y time tracking para equipos más variados.',
-    quick: { fb: 'FlowBoard combina tablero, sprints, OKRs, portfolios y time tracking, útil también para equipos que no son solo de ingeniería.', other: 'Linear tiene una propuesta muy opinada y ágil, pensada principalmente para equipos de software.' },
-    chooseFb: ['Tu equipo mezcla perfiles (diseño, marketing, operaciones, desarrollo).', 'Querés medir tiempo y facturación junto a las tareas.', 'Necesitás agrupar proyectos en portfolios y seguir OKRs.'],
-    chooseOther: ['Sos un equipo de software que quiere un flujo muy opinado y centrado en ingeniería.', 'Ya tenés procesos armados alrededor de sus convenciones.'],
-    faq: [['¿FlowBoard sirve para equipos de desarrollo?', 'Sí: tiene sprints, epics, integración con GitHub y vinculación de commits a tareas.'], ['¿Tiene time tracking?', 'Sí, con timer por tarea, horas facturables y reportes.']],
+    metaTitle: 'Centro Distribución para operadores logísticos', metaDesc: 'Conocé cómo una plataforma de inventario y depósito puede dar trazabilidad a operaciones logísticas.',
+    h1: 'Trazabilidad operativa para cada cliente.', lead: 'Representá clientes, depósitos y tareas con límites de acceso acordes a una operación que presta servicios logísticos a terceros.',
+    quick: { fb: 'La arquitectura considera operaciones multiempresa, depósitos tercerizados, clientes y permisos controlados por tenant.', other: 'Cada operación 3PL requiere acordar propiedad del inventario, visibilidad del cliente, evidencias y responsabilidades de servicio.' },
+    chooseFb: ['Operás inventario para más de una organización.', 'Necesitás relacionar mercadería con ubicaciones y movimientos.', 'Querés delimitar el acceso de cada usuario y cliente.', 'Buscás evaluar una base común para recepción y depósito.'],
+    chooseOther: ['Definir SLA, mediciones y reportes contractuales.', 'Confirmar portales externos y flujos de colaboración.', 'Validar integraciones con clientes y transportistas.'],
+    faq: [['¿Admite depósitos de terceros?', 'El modelo de producto contempla instalaciones de operadores logísticos externos. El alcance operativo debe validarse.'], ['¿Cada cliente tiene datos aislados?', 'El diseño es multi-tenant y requiere validar aislamiento y permisos en cada implementación.'], ['¿Incluye gestión de flota y rutas?', 'El TMS forma parte de la visión integral. No lo presentamos como una capacidad disponible confirmada.']],
   },
   'cmp-trello': {
-    metaTitle: 'FlowBoard vs Trello', metaDesc: 'Comparación entre FlowBoard y Trello: cuándo alcanza con tarjetas simples y cuándo conviene pasar a sprints, OKRs y reportes.',
-    h1: 'FlowBoard vs Trello', lead: 'Trello es ideal para tableros simples. FlowBoard mantiene esa simpleza y suma lo que suele faltar al crecer: sprints, timeline, OKRs, tiempo y reportes.',
-    quick: { fb: 'FlowBoard te da un tablero Kanban familiar y, cuando lo necesitás, sprints, timeline, objetivos y reportes en el mismo lugar.', other: 'Trello se destaca por su simplicidad: tableros, listas y tarjetas fáciles de entender para cualquiera.' },
-    chooseFb: ['Tu equipo creció y necesita sprints, fechas y reportes.', 'Querés seguir objetivos y medir tiempo sin sumar otra herramienta.', 'Buscás vinculación con commits de GitHub.'],
-    chooseOther: ['Solo necesitás listas y tarjetas simples.', 'Usás Trello para organización personal o proyectos muy chicos.'],
-    faq: [['¿Puedo pasar de Trello a FlowBoard?', 'Podés importar proyectos desde JSON con vista previa antes de confirmar.'], ['¿FlowBoard tiene tablero Kanban?', 'Sí, con drag & drop, columnas personalizables y filtros que se recuerdan.']],
+    metaTitle: 'Centro Distribución para fulfillment ecommerce', metaDesc: 'Conectá catálogo, existencias y tareas de depósito para operaciones de preparación y despacho de pedidos.',
+    h1: 'Más contexto entre el inventario y el despacho.', lead: 'Prepará una operación en la que los productos y ubicaciones tengan un historial que ayude a coordinar recepción, almacenamiento y salida de mercadería.',
+    quick: { fb: 'El núcleo de inventario registra movimientos trazables y relaciona cantidades con productos, ubicaciones y estados.', other: 'El fulfillment exige sincronizar pedidos, reservas, picking, packing, transportistas y confirmaciones de entrega.' },
+    chooseFb: ['Querés organizar catálogo y existencias por ubicación.', 'Necesitás identificar lotes o números de serie.', 'Buscás registrar movimientos con origen, destino y motivo.', 'Querés evaluar procesos de depósito en una plataforma modular.'],
+    chooseOther: ['Acordar integración con la plataforma de ecommerce.', 'Confirmar el alcance de órdenes, picking, packing y despacho.', 'Definir sincronización de stock y estados de entrega.'],
+    faq: [['¿Se integra con plataformas de ecommerce?', 'La arquitectura contempla integraciones con ecommerce y marketplaces; las conexiones disponibles deben confirmarse.'], ['¿Incluye picking y packing?', 'Son parte del alcance de WMS documentado. La disponibilidad debe validarse según la etapa de implementación.'], ['¿Puedo consultar los movimientos de stock?', 'El ledger de inventario se diseña para conservar registros trazables de los movimientos.']],
   },
 };
 
-const cmpEn: Record<CompareKey, CompareCopy> = {
+const en: Record<CompareKey, SolutionCopy> = {
   'cmp-jira': {
-    metaTitle: 'FlowBoard vs Jira', metaDesc: 'FlowBoard vs Jira compared: approach, complexity and which kind of team each one suits. A simple alternative to Jira.',
-    h1: 'FlowBoard vs Jira', lead: 'Jira is a highly configurable platform with a large ecosystem. FlowBoard aims for the opposite: get your team working fast, with the essentials done well.',
-    quick: { fb: 'FlowBoard prioritizes simplicity: boards, sprints, timeline, OKRs and time tracking ready to use, without building complex workflows before you start.', other: 'Jira offers highly customizable workflows, many integrations and an ecosystem built for large organizations.' },
-    chooseFb: ['You want to start working today, without weeks of setup.', 'Your team is small or mid-sized and does not need heavily customized workflows.', 'You prefer OKRs, time tracking and reports in the same tool.', 'You value a light, fast interface.'],
-    chooseOther: ['You need very granular workflows and permissions.', 'Your organization already uses the Atlassian ecosystem.', 'You depend on specific marketplace integrations or extensions.'],
-    faq: [['Is FlowBoard an alternative to Jira?', 'For teams looking for a simpler tool with Kanban, sprints and OKRs, yes. If you need Jira’s deep customization, Jira may still be the better choice.'], ['Can I migrate from Jira?', 'FlowBoard lets you import projects from JSON with a preview before confirming.']],
+    metaTitle: 'Centro Distribución for wholesale', metaDesc: 'Connect catalog, inventory and warehouse tasks for wholesale distribution operations.',
+    h1: 'More visibility for controlled distribution.', lead: 'Connect products, stock and warehouses to add context to receiving, storage and goods movements.',
+    quick: { fb: 'Centro Distribución is designed around traceable inventory, locations and related operational tasks.', other: 'In wholesale operations, data is often split across systems, spreadsheets and processes in each warehouse.' },
+    chooseFb: ['You need to know stock by product and location.', 'You want to retain movement and adjustment history.', 'Your operation includes receiving, putaway and physical counts.', 'You work across multiple warehouses or entities.'],
+    chooseOther: ['Agree on the source of truth for catalog and purchasing.', 'Validate which processes are available at the current product stage.', 'Define integrations and implementation scope.'],
+    faq: [['Is it designed for wholesale distributors?', 'The platform targets supply and distribution operations. Fit depends on your processes and the product stage.'], ['Does it support multiple warehouses?', 'The architecture accounts for multiple warehouses, zones and locations per organization.'], ['Does it replace my purchasing system?', 'Interoperability should be evaluated against existing systems and available integrations.']],
   },
   'cmp-clickup': {
-    metaTitle: 'FlowBoard vs ClickUp', metaDesc: 'FlowBoard vs ClickUp compared: what each one offers and which teams they fit. A focused alternative to ClickUp.',
-    h1: 'FlowBoard vs ClickUp', lead: 'ClickUp aims to cover almost everything in one platform. FlowBoard concentrates on project management and keeps it light.',
-    quick: { fb: 'FlowBoard focuses on projects, sprints, goals and time. Less surface, less noise, more focus on moving work.', other: 'ClickUp offers a very wide surface of features: tasks, docs, views and more, with plenty of configuration available.' },
-    chooseFb: ['You want a tool focused on projects, without being overwhelmed by options.', 'You prioritize speed and clarity over breadth of features.', 'You want OKRs, sprints and time tracking integrated into the board.'],
-    chooseOther: ['You want to consolidate docs, tasks and other tools in a single platform.', 'Your team enjoys configuring and customizing its space a lot.'],
-    faq: [['Is FlowBoard simpler than ClickUp?', 'FlowBoard has a deliberately narrower scope: project management, goals and time, with a light interface.'], ['What views does FlowBoard have?', 'Kanban board, list, timeline and sprints, plus reports.']],
+    metaTitle: 'Centro Distribución for multi-location retail', metaDesc: 'Organize catalog and inventory with warehouse and branch context across a retail network.',
+    h1: 'A shared view across warehouses and stores.', lead: 'Represent products, locations and organizations to coordinate inventory information across multiple operating sites.',
+    quick: { fb: 'The model accounts for organizations, warehouses, branches, locations and tenant-scoped inventory records.', other: 'Retail networks need clear rules for sharing catalogs and deciding who can view or change stock at each site.' },
+    chooseFb: ['You manage multiple stores or warehouses.', 'You need permissions based on location and role.', 'You want to relate stock to specific locations.', 'You need a shared foundation for product information.'],
+    chooseOther: ['Define replenishment policies between locations.', 'Confirm required POS and ecommerce flows.', 'Agree on availability of consolidated dashboards and analytics.'],
+    faq: [['Does the product include POS?', 'The master plan includes store operations and POS in the ecosystem vision; availability should be confirmed.'], ['Can stock be managed by store?', 'The organizational model accounts for branches and logistics nodes. Available workflows depend on implementation status.'], ['Is replenishment automated?', 'Automated replenishment is part of the product vision and is not presented as a confirmed capability.']],
   },
   'cmp-linear': {
-    metaTitle: 'FlowBoard vs Linear', metaDesc: 'FlowBoard vs Linear compared: focus, team type and features. Pick the tool that best fits how you work.',
-    h1: 'FlowBoard vs Linear', lead: 'Linear is a tool strongly focused on product and software teams. FlowBoard adds OKRs, portfolios and time tracking for more varied teams.',
-    quick: { fb: 'FlowBoard combines board, sprints, OKRs, portfolios and time tracking, useful for teams that are not only engineering.', other: 'Linear has a very opinionated and agile proposition, mainly designed for software teams.' },
-    chooseFb: ['Your team mixes profiles (design, marketing, operations, development).', 'You want to track time and billing next to tasks.', 'You need to group projects into portfolios and follow OKRs.'],
-    chooseOther: ['You are a software team that wants a very opinionated, engineering-centered flow.', 'You already have processes built around its conventions.'],
-    faq: [['Does FlowBoard work for development teams?', 'Yes: it has sprints, epics, GitHub integration and commit-to-task linking.'], ['Does it have time tracking?', 'Yes, with a per-task timer, billable hours and reports.']],
+    metaTitle: 'Centro Distribución for logistics operators', metaDesc: 'Explore how an inventory and warehouse platform can add traceability to logistics operations.',
+    h1: 'Operational traceability for every client.', lead: 'Represent customers, warehouses and tasks with access boundaries that fit a logistics operation serving third parties.',
+    quick: { fb: 'The architecture accounts for multi-company operations, third-party warehouses, customers and tenant-controlled permissions.', other: 'Each 3PL operation needs clear ownership of inventory, customer visibility, evidence and service responsibilities.' },
+    chooseFb: ['You handle inventory for more than one organization.', 'You need to link goods to locations and movements.', 'You want to scope access for each user and customer.', 'You want to evaluate a shared foundation for receiving and warehousing.'],
+    chooseOther: ['Define SLAs, measurement and contractual reporting.', 'Confirm external portals and collaboration flows.', 'Validate integrations with customers and carriers.'],
+    faq: [['Does it support third-party warehouses?', 'The product model accounts for external logistics facilities. Operational scope should be validated.'], ['Is each customer’s data isolated?', 'The design is multi-tenant; isolation and permissions need to be validated for each implementation.'], ['Does it include fleet and route management?', 'TMS is part of the broader product vision. We do not present it as a confirmed available capability.']],
   },
   'cmp-trello': {
-    metaTitle: 'FlowBoard vs Trello', metaDesc: 'FlowBoard vs Trello compared: when simple cards are enough and when it is time to move to sprints, OKRs and reports.',
-    h1: 'FlowBoard vs Trello', lead: 'Trello is great for simple boards. FlowBoard keeps that simplicity and adds what usually goes missing as you grow: sprints, timeline, OKRs, time and reports.',
-    quick: { fb: 'FlowBoard gives you a familiar Kanban board and, when you need it, sprints, timeline, goals and reports in the same place.', other: 'Trello stands out for its simplicity: boards, lists and cards that anyone can understand.' },
-    chooseFb: ['Your team has grown and needs sprints, dates and reports.', 'You want to follow goals and track time without adding another tool.', 'You want to link GitHub commits.'],
-    chooseOther: ['You only need simple lists and cards.', 'You use Trello for personal organization or very small projects.'],
-    faq: [['Can I move from Trello to FlowBoard?', 'You can import projects from JSON with a preview before confirming.'], ['Does FlowBoard have a Kanban board?', 'Yes, with drag & drop, customizable columns and filters that stick.']],
+    metaTitle: 'Centro Distribución for ecommerce fulfillment', metaDesc: 'Connect catalog, stock and warehouse tasks for order preparation and goods dispatch operations.',
+    h1: 'More context between inventory and dispatch.', lead: 'Build an operation where products and locations have a history that helps coordinate receiving, storage and goods issue.',
+    quick: { fb: 'The inventory core records traceable movements and relates quantities to products, locations and states.', other: 'Fulfillment requires coordination across orders, reservations, picking, packing, carriers and delivery confirmation.' },
+    chooseFb: ['You want to organize catalog and stock by location.', 'You need to identify lots or serial numbers.', 'You want to record movements with source, destination and reason.', 'You want to evaluate a modular warehouse platform.'],
+    chooseOther: ['Agree on integration with your ecommerce platform.', 'Confirm the scope of orders, picking, packing and dispatch.', 'Define stock and delivery status synchronization.'],
+    faq: [['Does it integrate with ecommerce platforms?', 'The architecture accounts for ecommerce and marketplace integrations; available connections should be confirmed.'], ['Does it include picking and packing?', 'They are part of the documented WMS scope. Availability should be confirmed for the current implementation stage.'], ['Can I review stock movements?', 'The inventory ledger is designed to retain traceable movement records.']],
   },
 };
 
 export const compare = {
-  es: { data: cmpEs, names, h: { quick: 'En pocas palabras', fb: 'Cuándo elegir FlowBoard', other: (n: string) => `Cuándo elegir ${n}`, includes: 'Qué incluye FlowBoard', disclaimer: 'Comparación basada en información pública y en el enfoque general de cada producto; las funciones pueden cambiar. Todas las marcas pertenecen a sus respectivos dueños.', ctaH: 'Probá FlowBoard gratis', ctaP: 'Armá tu primer tablero en minutos y decidí por vos mismo.', includesList: ['Tableros Kanban con drag & drop', 'Sprints, epics y backlog', 'Timeline y vista de lista', 'OKRs y portfolios', 'Time tracking y reportes', 'Integración con GitHub'] } },
-  en: { data: cmpEn, names, h: { quick: 'In a nutshell', fb: 'When to choose FlowBoard', other: (n: string) => `When to choose ${n}`, includes: 'What FlowBoard includes', disclaimer: 'Comparison based on public information and each product’s general approach; features may change. All trademarks belong to their respective owners.', ctaH: 'Try FlowBoard for free', ctaP: 'Build your first board in minutes and decide for yourself.', includesList: ['Kanban boards with drag & drop', 'Sprints, epics and backlog', 'Timeline and list view', 'OKRs and portfolios', 'Time tracking and reports', 'GitHub integration'] } },
+  es: { data: es, names, h: { quick: 'En contexto', fb: 'Cómo puede ayudar la plataforma', other: (n: string) => `Qué conviene definir en ${n}`, includes: 'Capacidades relacionadas', disclaimer: 'El alcance y la disponibilidad de cada módulo dependen de la etapa de implementación. Las capacidades futuras se identifican como visión o trabajo pendiente.', ctaH: 'Conversemos sobre tu operación', ctaP: 'Contanos cómo se mueve la mercadería en tu red.', includesList: ['Catálogo de productos', 'Inventario y movimientos trazables', 'Depósitos y ubicaciones', 'Recepción y guardado', 'Lotes y números de serie', 'Proveedores y clientes'] } },
+  en: { data: en, names, h: { quick: 'In context', fb: 'How the platform may help', other: (n: string) => `What to define for ${n}`, includes: 'Related capabilities', disclaimer: 'Scope and availability depend on implementation stage. Future capabilities are identified as vision or planned work.', ctaH: 'Let’s discuss your operation', ctaP: 'Tell us how goods move across your network.', includesList: ['Product catalog', 'Inventory and traceable movements', 'Warehouses and locations', 'Receiving and putaway', 'Lots and serial numbers', 'Suppliers and customers'] } },
 } as const;
 
 /* ---------------- Contacto ---------------- */
 export const contact = {
-  es: { metaTitle: 'Contacto', metaDesc: 'Escribinos: consultas sobre FlowBoard, soporte, planes para equipos y prensa.', h1: 'Hablemos.', lead: 'Contanos qué necesitás y te respondemos por email.',
-    topics: [['life-buoy', 'Soporte', 'Ayuda con tu cuenta o con el uso del producto.'], ['users', 'Equipos', 'Necesidades de un equipo grande o requisitos específicos.'], ['message-square', 'Feedback', 'Ideas y sugerencias para mejorar FlowBoard.']], email: 'Escribinos a', hint: 'Solemos responder en uno o dos días hábiles.' },
-  en: { metaTitle: 'Contact', metaDesc: 'Write to us: questions about FlowBoard, support, team plans and press.', h1: 'Let’s talk.', lead: 'Tell us what you need and we will reply by email.',
-    topics: [['life-buoy', 'Support', 'Help with your account or using the product.'], ['users', 'Teams', 'Needs of a larger team or specific requirements.'], ['message-square', 'Feedback', 'Ideas and suggestions to improve FlowBoard.']], email: 'Write to us at', hint: 'We usually reply within one or two business days.' },
+  es: { metaTitle: 'Contacto', metaDesc: 'Conversemos sobre la operación, los depósitos y los procesos de inventario de tu empresa.', h1: 'Hablemos de tu operación.', lead: 'Contanos cómo recibís, almacenás y distribuís mercadería.',
+    topics: [['layers', 'Inventario', 'Productos, existencias, movimientos y trazabilidad.'], ['home', 'Depósitos', 'Recepción, ubicaciones y tareas de operación.'], ['briefcase', 'Implementación', 'Estructura de organizaciones, sistemas e integraciones.']], email: 'Canal de contacto', hint: 'El equipo te responderá cuando el canal comercial esté habilitado.' },
+  en: { metaTitle: 'Contact', metaDesc: 'Let’s discuss your company’s operations, warehouses and inventory processes.', h1: 'Let’s talk about your operation.', lead: 'Tell us how you receive, store and distribute goods.',
+    topics: [['layers', 'Inventory', 'Products, stock, movements and traceability.'], ['home', 'Warehouses', 'Receiving, locations and operational tasks.'], ['briefcase', 'Implementation', 'Organization structure, systems and integrations.']], email: 'Contact channel', hint: 'Our team will reply when the commercial channel is enabled.' },
 } as const;
 
 /* ---------------- Legales ---------------- */
 type Section = [string, string[]];
 export interface LegalDoc { metaTitle: string; metaDesc: string; h1: string; updated: string; sections: Section[] }
-
+const legalNoticeEs: Section[] = [
+  ['Información del titular', ['Los datos de la persona o entidad responsable, domicilio legal y canal oficial de contacto deben completarse antes de habilitar el servicio.']],
+  ['Alcance de estos términos', ['El texto legal definitivo está en preparación. No uses esta página como base para contratar ni cargues información operativa o personal hasta que se publiquen las condiciones aplicables.']],
+  ['Consultas', ['Usá el canal comercial cuando se encuentre habilitado para solicitar la versión vigente de los términos.']],
+];
+const privacyNoticeEs: Section[] = [
+  ['Responsable del tratamiento', ['La identidad y los datos de contacto del responsable deben completarse antes de habilitar el servicio.']],
+  ['Datos y finalidades', ['La plataforma puede procesar datos de cuenta, organización, catálogo, inventario y actividad operativa para prestar sus funciones. Los datos, finalidades, bases legales, plazos y destinatarios definitivos deben documentarse antes de la puesta en producción.']],
+  ['Proveedores y transferencias', ['La infraestructura y los proveedores que podrían procesar datos deben identificarse en la política definitiva.']],
+  ['Derechos y consultas', ['El canal para ejercer derechos sobre datos personales debe completarse antes de publicar el servicio.']],
+  ['Estado de esta página', ['Esta información es preliminar y no reemplaza una política de privacidad revisada para la jurisdicción y el modelo de operación aplicables.']],
+];
+const legalNoticeEn: Section[] = [
+  ['Service owner', ['The responsible person or entity, legal address and official contact channel must be completed before the service is enabled.']],
+  ['Scope of these terms', ['Final legal terms are being prepared. Do not rely on this page to contract or upload operational or personal information until applicable terms are published.']],
+  ['Questions', ['Use the commercial channel once available to request the current terms.']],
+];
+const privacyNoticeEn: Section[] = [
+  ['Data controller', ['The identity and contact details of the controller must be completed before the service is enabled.']],
+  ['Data and purposes', ['The platform may process account, organization, catalog, inventory and operational activity data to provide its functions. Definitive data categories, purposes, legal bases, retention periods and recipients must be documented before production.']],
+  ['Processors and transfers', ['Infrastructure and providers that may process data must be identified in the final policy.']],
+  ['Rights and questions', ['The channel to exercise data protection rights must be completed before the service is published.']],
+  ['Status of this page', ['This information is preliminary and does not replace a privacy policy reviewed for the applicable jurisdiction and operating model.']],
+];
 export const legal: Record<'terms' | 'privacy', Record<Lang, LegalDoc>> = {
   terms: {
-    es: {
-      metaTitle: 'Términos y condiciones', metaDesc: 'Términos y condiciones de uso del servicio FlowBoard.', h1: 'Términos y condiciones', updated: '29 de septiembre de 2026',
-      sections: [
-        ['1. Aceptación', ['Al crear una cuenta o usar FlowBoard aceptás estos términos. Si no estás de acuerdo, no uses el servicio.']],
-        ['2. El servicio', ['FlowBoard es una herramienta web de gestión de proyectos que incluye tableros, sprints, objetivos, seguimiento de tiempo e integraciones. Podemos modificar, agregar o retirar funciones para mejorar el servicio.']],
-        ['3. Tu cuenta', ['Sos responsable de la información que cargás al registrarte, de mantener la confidencialidad de tu contraseña y de la actividad realizada desde tu cuenta. Debés verificar tu email para usar el servicio.']],
-        ['4. Uso aceptable', ['No podés usar FlowBoard para actividades ilegales, para vulnerar derechos de terceros, para intentar acceder sin autorización a datos de otros usuarios ni para interferir con el funcionamiento del servicio.']],
-        ['5. Tu contenido', ['Conservás todos los derechos sobre el contenido que cargás (proyectos, tareas, archivos). Nos otorgás el permiso necesario para almacenarlo y procesarlo con el único fin de prestarte el servicio.']],
-        ['6. Disponibilidad', ['Trabajamos para que el servicio esté disponible de forma continua, pero no garantizamos que funcione sin interrupciones ni errores. Podemos realizar mantenimientos o cambios.']],
-        ['7. Limitación de responsabilidad', ['En la máxima medida permitida por la ley, FlowBoard no será responsable por daños indirectos o pérdida de datos o beneficios derivados del uso del servicio. Te recomendamos mantener copias de la información importante.']],
-        ['8. Terminación', ['Podés dejar de usar el servicio en cualquier momento. Podemos suspender cuentas que incumplan estos términos.']],
-        ['9. Cambios', ['Podemos actualizar estos términos. Publicaremos la versión vigente en esta página con su fecha de actualización.']],
-        ['10. Contacto', ['Para consultas sobre estos términos, escribinos desde la página de contacto.']],
-      ],
-    },
-    en: {
-      metaTitle: 'Terms and conditions', metaDesc: 'Terms and conditions for using the FlowBoard service.', h1: 'Terms and conditions', updated: 'September 29, 2026',
-      sections: [
-        ['1. Acceptance', ['By creating an account or using FlowBoard you accept these terms. If you do not agree, do not use the service.']],
-        ['2. The service', ['FlowBoard is a web project management tool that includes boards, sprints, goals, time tracking and integrations. We may modify, add or remove features to improve the service.']],
-        ['3. Your account', ['You are responsible for the information you provide when signing up, for keeping your password confidential and for the activity carried out from your account. You must verify your email to use the service.']],
-        ['4. Acceptable use', ['You may not use FlowBoard for illegal activities, to infringe third-party rights, to attempt unauthorized access to other users’ data or to interfere with the operation of the service.']],
-        ['5. Your content', ['You keep all rights to the content you upload (projects, tasks, files). You grant us the permission needed to store and process it solely to provide the service to you.']],
-        ['6. Availability', ['We work to keep the service continuously available, but we do not guarantee it will run without interruptions or errors. We may perform maintenance or changes.']],
-        ['7. Limitation of liability', ['To the maximum extent permitted by law, FlowBoard will not be liable for indirect damages or loss of data or profits arising from use of the service. We recommend keeping copies of important information.']],
-        ['8. Termination', ['You can stop using the service at any time. We may suspend accounts that breach these terms.']],
-        ['9. Changes', ['We may update these terms. We will publish the current version on this page with its update date.']],
-        ['10. Contact', ['For questions about these terms, write to us from the contact page.']],
-      ],
-    },
+    es: { metaTitle: 'Términos y condiciones', metaDesc: 'Información preliminar sobre los términos de uso de Centro Distribución.', h1: 'Términos y condiciones', updated: 'En preparación', sections: legalNoticeEs },
+    en: { metaTitle: 'Terms and conditions', metaDesc: 'Preliminary information about Centro Distribución terms of use.', h1: 'Terms and conditions', updated: 'In preparation', sections: legalNoticeEn },
   },
   privacy: {
-    es: {
-      metaTitle: 'Política de privacidad', metaDesc: 'Cómo FlowBoard recopila, usa y protege tus datos personales.', h1: 'Política de privacidad', updated: '29 de septiembre de 2026',
-      sections: [
-        ['1. Qué datos recopilamos', ['Datos de cuenta: nombre, email y contraseña (almacenada de forma cifrada con hash).', 'Contenido que cargás: proyectos, tareas, comentarios, archivos, registros de tiempo y objetivos.', 'Datos de uso y técnicos necesarios para operar y proteger el servicio.']],
-        ['2. Para qué los usamos', ['Para prestar el servicio, autenticarte, enviarte emails transaccionales (verificación de cuenta, restablecimiento de contraseña, invitaciones) y mantener la seguridad y el rendimiento.']],
-        ['3. Proveedores que procesan datos', ['Usamos proveedores de infraestructura para operar FlowBoard, por ejemplo hosting de la aplicación, base de datos PostgreSQL, almacenamiento de archivos y envío de emails. Estos proveedores procesan datos únicamente para prestarnos sus servicios.']],
-        ['4. Conservación', ['Conservamos tus datos mientras tu cuenta esté activa o sea necesario para prestar el servicio. Podés solicitar la eliminación de tu cuenta y datos.']],
-        ['5. Seguridad', ['Aplicamos medidas técnicas y organizativas razonables, como contraseñas con hash, verificación de email y controles de acceso por workspace. Ningún sistema es completamente infalible.']],
-        ['6. Tus derechos', ['Podés acceder, rectificar y solicitar la eliminación de tus datos personales. Para ejercer estos derechos, escribinos desde la página de contacto.']],
-        ['7. Cookies', ['Usamos cookies estrictamente necesarias para mantener tu sesión iniciada. Este sitio de presentación no utiliza cookies de publicidad.']],
-        ['8. Cambios', ['Podemos actualizar esta política. Publicaremos la versión vigente aquí con su fecha de actualización.']],
-      ],
-    },
-    en: {
-      metaTitle: 'Privacy policy', metaDesc: 'How FlowBoard collects, uses and protects your personal data.', h1: 'Privacy policy', updated: 'September 29, 2026',
-      sections: [
-        ['1. Data we collect', ['Account data: name, email and password (stored as a secure hash).', 'Content you upload: projects, tasks, comments, files, time entries and goals.', 'Usage and technical data needed to operate and protect the service.']],
-        ['2. What we use it for', ['To provide the service, authenticate you, send transactional emails (account verification, password reset, invitations) and maintain security and performance.']],
-        ['3. Providers that process data', ['We use infrastructure providers to operate FlowBoard, for example application hosting, a PostgreSQL database, file storage and email delivery. These providers process data only to provide their services to us.']],
-        ['4. Retention', ['We keep your data while your account is active or as needed to provide the service. You can request deletion of your account and data.']],
-        ['5. Security', ['We apply reasonable technical and organizational measures, such as hashed passwords, email verification and workspace-level access controls. No system is completely infallible.']],
-        ['6. Your rights', ['You can access, correct and request deletion of your personal data. To exercise these rights, write to us from the contact page.']],
-        ['7. Cookies', ['We use strictly necessary cookies to keep you signed in. This marketing site does not use advertising cookies.']],
-        ['8. Changes', ['We may update this policy. We will publish the current version here with its update date.']],
-      ],
-    },
+    es: { metaTitle: 'Política de privacidad', metaDesc: 'Información preliminar sobre el tratamiento de datos en Centro Distribución.', h1: 'Política de privacidad', updated: 'En preparación', sections: privacyNoticeEs },
+    en: { metaTitle: 'Privacy policy', metaDesc: 'Preliminary information about data processing by Centro Distribución.', h1: 'Privacy policy', updated: 'In preparation', sections: privacyNoticeEn },
   },
 };
 
-/* ---------------- Changelog ---------------- */
+/* ---------------- Evolución ---------------- */
 export const changelog = {
-  es: { metaTitle: 'Novedades y changelog', metaDesc: 'Todo lo nuevo en FlowBoard: funciones, mejoras y correcciones, en orden cronológico.', h1: 'Novedades', lead: 'Lo que fuimos construyendo en FlowBoard.',
-    entries: [
-      { date: '2026-09-27', title: 'Más seguridad y mejor experiencia', items: ['Permisos revisados en toda la API y aislamiento entre workspaces.', 'Vistas guardadas por proyecto y filtros que se recuerdan entre sesiones.', 'Recuperación de timers abiertos desde Mis tareas.', 'Invitación de miembros al workspace desde Equipo.', 'Estados de carga y pantallas vacías más claros.'] },
-      { date: '2026-09-17', title: 'Git, archivos e IA', items: ['Integración con GitHub: commits vinculados a tareas por su clave.', 'Generación de tickets con IA desde el tablero.', 'Subida de archivos de hasta 50 MB directo al almacenamiento.', 'Vista de lista agrupada por sprint con edición por fila.', 'Columnas del tablero: crear, renombrar y colorear.', 'Dependencias entre tareas con indicador de bloqueo.', 'Objetivos vinculados a proyectos e iconos personalizados por proyecto.'] },
-      { date: '2026-09-16', title: 'Registro y cuentas', items: ['Registro autoservicio con creación de workspace.', 'Verificación de email obligatoria.', 'Restablecimiento de contraseña por email.'] },
-    ] },
-  en: { metaTitle: 'Changelog and updates', metaDesc: 'Everything new in FlowBoard: features, improvements and fixes, in chronological order.', h1: 'Changelog', lead: 'What we have been building in FlowBoard.',
-    entries: [
-      { date: '2026-09-27', title: 'More security and a better experience', items: ['Permissions reviewed across the whole API and isolation between workspaces.', 'Saved views per project and filters remembered across sessions.', 'Recovery of open timers from My tasks.', 'Invite members to the workspace from Team.', 'Clearer loading states and empty screens.'] },
-      { date: '2026-09-17', title: 'Git, files and AI', items: ['GitHub integration: commits linked to tasks by their key.', 'AI ticket generation from the board.', 'File uploads up to 50 MB straight to storage.', 'List view grouped by sprint with per-row editing.', 'Board columns: create, rename and color.', 'Task dependencies with a block indicator.', 'Goals linked to projects and custom project icons.'] },
-      { date: '2026-09-16', title: 'Sign-up and accounts', items: ['Self-serve sign-up with workspace creation.', 'Mandatory email verification.', 'Password reset by email.'] },
-    ] },
+  es: { metaTitle: 'Evolución del producto', metaDesc: 'Conocé el enfoque modular y la evolución de Centro Distribución.', h1: 'Evolución del producto', lead: 'El producto se desarrolla por módulos. Consultanos para conocer el alcance actual.', entries: [] },
+  en: { metaTitle: 'Product updates', metaDesc: 'Explore the modular approach and ongoing development of Centro Distribución.', h1: 'Product updates', lead: 'The product is being developed module by module. Contact us to discuss current scope.', entries: [] },
 } as const;
+

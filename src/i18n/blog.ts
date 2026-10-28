@@ -16,3 +16,4 @@ export async function postAlternates(post: Post): Promise<Partial<Record<Lang, s
   for (const p of all) out[p.data.lang] = blogUrl(slugOf(p), p.data.lang);
   return out;
 }
+

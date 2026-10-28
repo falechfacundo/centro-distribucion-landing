@@ -1,8 +1,8 @@
 ---
 import Icon from './Icon.astro';
-import { REGISTER_URL } from '../config';
-interface Props { title: string; text?: string; primary: string; secondaryHref?: string; secondary?: string }
-const { title, text, primary, secondaryHref, secondary } = Astro.props;
+import { url, type Lang } from '../i18n/routes';
+interface Props { title: string; text?: string; primary: string; secondaryHref?: string; secondary?: string; lang?: Lang }
+const { title, text, primary, secondaryHref, secondary, lang = 'es' } = Astro.props;
 ---
 <section class="section !pt-8 pb-28">
   <div class="wrap-wide">
@@ -13,9 +13,10 @@ const { title, text, primary, secondaryHref, secondary } = Astro.props;
       <h2 class="h-section relative mx-auto max-w-[20ch] grad-text" data-reveal>{title}</h2>
       {text && <p class="lead relative mx-auto mt-5 max-w-[32rem]" data-reveal>{text}</p>}
       <div class="relative mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row" data-reveal>
-        <a href={REGISTER_URL} data-magnetic class="btn btn-primary btn-lg">{primary} <Icon name="arrow-right" class="arrow" /></a>
+        <a href={url('contact', lang)} data-magnetic class="btn btn-primary btn-lg">{primary} <Icon name="arrow-right" class="arrow" /></a>
         {secondaryHref && secondary && <a href={secondaryHref} data-magnetic class="btn btn-ghost btn-lg">{secondary}</a>}
       </div>
     </div>
   </div>
 </section>
+

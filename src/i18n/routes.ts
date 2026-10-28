@@ -6,18 +6,18 @@ export const ogLocale: Record<Lang, string> = { es: 'es_AR', en: 'en_US' };
 // Cada clave tiene su ruta por idioma (sin barras inicial/final).
 export const routes = {
   home: { es: '', en: '' },
-  'feat-board': { es: 'funciones/tablero-kanban', en: 'features/kanban-board' },
-  'feat-sprints': { es: 'funciones/sprints', en: 'features/sprints' },
-  'feat-timeline': { es: 'funciones/timeline', en: 'features/timeline' },
-  'feat-okrs': { es: 'funciones/okrs', en: 'features/okrs' },
-  'feat-time': { es: 'funciones/time-tracking', en: 'features/time-tracking' },
-  'feat-git': { es: 'funciones/integracion-git', en: 'features/git-integration' },
-  'feat-ai': { es: 'funciones/tickets-con-ia', en: 'features/ai-tickets' },
+  'feat-board': { es: 'plataforma/catalogo-productos', en: 'platform/product-catalog' },
+  'feat-sprints': { es: 'plataforma/inventario', en: 'platform/inventory' },
+  'feat-timeline': { es: 'plataforma/depositos-ubicaciones', en: 'platform/warehouses-locations' },
+  'feat-okrs': { es: 'plataforma/proveedores-abastecimiento', en: 'platform/suppliers-procurement' },
+  'feat-time': { es: 'plataforma/lotes-trazabilidad', en: 'platform/lots-traceability' },
+  'feat-git': { es: 'plataforma/recepcion-guardado', en: 'platform/receiving-putaway' },
+  'feat-ai': { es: 'plataforma/organizaciones-permisos', en: 'platform/organizations-permissions' },
   pricing: { es: 'precios', en: 'pricing' },
-  'cmp-jira': { es: 'comparar/jira', en: 'compare/jira' },
-  'cmp-clickup': { es: 'comparar/clickup', en: 'compare/clickup' },
-  'cmp-linear': { es: 'comparar/linear', en: 'compare/linear' },
-  'cmp-trello': { es: 'comparar/trello', en: 'compare/trello' },
+  'cmp-jira': { es: 'soluciones/distribucion-mayorista', en: 'solutions/wholesale-distribution' },
+  'cmp-clickup': { es: 'soluciones/retail-multisucursal', en: 'solutions/multi-location-retail' },
+  'cmp-linear': { es: 'soluciones/operadores-logisticos', en: 'solutions/logistics-operators' },
+  'cmp-trello': { es: 'soluciones/fulfillment-ecommerce', en: 'solutions/ecommerce-fulfillment' },
   terms: { es: 'legal/terminos', en: 'legal/terms' },
   privacy: { es: 'legal/privacidad', en: 'legal/privacy' },
   contact: { es: 'contacto', en: 'contact' },
@@ -40,3 +40,4 @@ export type FeatureKey = (typeof featureKeys)[number];
 export type CompareKey = (typeof compareKeys)[number];
 
 export function otherLang(lang: Lang): Lang { return lang === 'es' ? 'en' : 'es'; }
+
